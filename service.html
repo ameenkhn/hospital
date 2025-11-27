@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cardiology Services — Hospital</title>
+  <meta name="description" content="Comprehensive Cardiology services — procedures, diagnostics, research and request a callback." />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       Theme variables & resets
+       =========================== */
+    :root{
+      --bg: #ffffff;
+      --surface: #f6fbfb;
+      --muted: #f1f7f6;
+      --card: #eaf6f6;
+      --primary: #0a6b6b;      /* deep teal */
+      --accent: #f2c94c;       /* warm yellow */
+      --accent-dark: #e0b03b;
+      --soft-blue: #e9f6f6;
+      --text: #08343a;
+      --muted-text: #6b7d7d;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --gap: 20px;
+      --glass: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--surface) 0%, #fff 40%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.45;
+    }
+    img,svg{max-width:100%;height:auto;display:block}
+    a{color:var(--primary);text-decoration:none}
+    button{font-family:inherit}
+    /* subtle page entrance */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeInUp 560ms cubic-bezier(.2,.8,.2,1) both; }
+
+    /* ===========================
+       Header / Nav (service page base)
+       =========================== */
+    .header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+      position: sticky;
+      top:0;
+      z-index:60;
+      box-shadow:0 6px 20px rgba(6,20,20,0.04);
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(6,107,107,0.03);
+      animation: fadeInUp 420ms ease both;
+    }
+    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 18px; gap: 16px; width:100%; }
+    .nav-left { display:flex; gap:12px; align-items:center; min-width:0; }
+    .nav-item { color: #0a5f71; font-weight:600; font-size:13px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; }
+    .logo { display:flex; align-items:center; gap:12px; font-weight:700; color:var(--primary); text-decoration:none; }
+    .logo-text { color: #0D9DB5; font-size:22px; font-weight:800; line-height:1; }
+    .logo-subtext { color: #0D9DB5; font-size:10px; letter-spacing:2px; }
+    .logo { position: absolute; left: 50%; transform: translateX(-50%); pointer-events: none; }
+    .nav-container .logo { pointer-events: auto; }
+    .nav { display:flex; gap:14px; align-items:center; color:var(--muted-text); font-size:14px; }
+    .spacer { flex:1; }
+
+  @media (max-width:600px) {
+    .logo { position: static; transform: none; }
+    .logo-text { font-size:18px; }
+    .logo-subtext { font-size:9px; }
+  }
+    /* CTA */
+    .cta-btn{
+      background:var(--accent);
+      color:#06323a;
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 8px 24px rgba(242,201,76,0.14);
+    }
+    .ghost{
+      border:2px solid var(--primary);
+      background:transparent;
+      padding:8px 14px;
+      border-radius:999px;
+      color:var(--primary);
+      cursor:pointer;
+    }
+
+    /* mobile/desktop helpers */
+    .mobile-only{ display:none }
+    .desktop-only{ display:inline-flex }
+
+    /* ===========================
+       Layout container
+       =========================== */
+    .container{
+      width: min(1220px, 94%);
+      margin: 20px auto 48px;
+      padding-bottom:36px;
+    }
+
+    /* ===========================
+       Hero
+       =========================== */
+    .hero{
+      display:flex;
+      gap:28px;
+      align-items:flex-start;
+      padding:18px 0 8px 0;
+      flex-wrap:wrap;
+    }
+    .hero-left{ flex:1; min-width:260px; }
+    h1{
+      font-family: 'Source Serif 4', serif;
+      font-size:36px;
+      margin:0 0 12px 0;
+      color:var(--primary);
+      font-weight:700;
+      line-height:1.02;
+    }
+    .lead{
+      color:var(--muted-text);
+      max-width:760px;
+      margin-bottom:18px;
+      font-size:16px;
+    }
+    .hero-actions{display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap}
+    .pill-row{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .pill{
+      border:2px solid rgba(10,100,100,0.12);
+      padding:10px 14px;border-radius:999px;background:white;font-weight:600;
+      color:var(--primary);
+    }
+    .hero-illustration{ width:320px; text-align:right; position:relative; padding-left:6px; }
+
+    /* ===========================
+       Sections & headings
+       =========================== */
+    section{margin:36px 0 64px 0}
+    .section-title{
+      font-size:28px;color:var(--primary);font-weight:700;margin-bottom:18px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .section-title:before{
+      content:"";
+      width:42px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+      box-shadow:0 6px 18px rgba(224,176,59,0.12);
+    }
+
+    /* ===========================
+       Carousel
+       =========================== */
+    .carousel-wrap{position:relative}
+    .carousel{
+      display:flex;
+      gap:20px;
+      overflow-x:auto;
+      padding:12px 6px;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
+      scroll-snap-type: x mandatory;
+      padding-bottom:12px;
+    }
+    .carousel::-webkit-scrollbar{ height:10px }
+    .carousel::-webkit-scrollbar-thumb{ background: rgba(10,100,100,0.08); border-radius:20px }
+    .card{
+      min-width:260px;
+      background:var(--soft-blue);
+      border-radius:14px;padding:20px;
+      box-shadow:0 10px 30px rgba(7,41,43,0.04);
+      border:1px solid rgba(7,41,43,0.03);
+      flex-shrink:0;
+      transition: transform .22s cubic-bezier(.2,.9,.25,1), box-shadow .22s ease;
+      scroll-snap-align: start;
+    }
+    .card:hover{ transform: translateY(-8px) scale(1.02); box-shadow:0 18px 48px rgba(7,41,43,0.08); }
+    .card h4{margin:0 0 8px 0;font-size:18px}
+    .card p{margin:0;color:var(--muted-text);font-size:14px}
+    .card a{display:inline-block;margin-top:12px;font-weight:700;color:var(--primary)}
+    .carousel-nav{
+      position:absolute;right:8px;bottom:6px;display:flex;gap:12px;
+    }
+    .circle-btn{
+      background:#fff;border-radius:50%;width:44px;height:44px;border:2px solid rgba(0,0,0,0.06);
+      display:grid;place-items:center;cursor:pointer;
+      box-shadow:0 10px 30px rgba(10,20,20,0.04);
+      transition: transform .16s ease, box-shadow .16s ease;
+      font-size:20px;
+    }
+
+    /* ===========================
+       Grids & Cards
+       =========================== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .dcard{
+      background:var(--muted);
+      border-radius:12px;padding:18px;border:1px solid rgba(6,60,60,0.03);
+    }
+    .dcard.highlight{
+      background:#fff6e8;border:1px solid rgba(10,100,100,0.12);
+    }
+    .dcard h3{ margin:0 0 8px 0; color:var(--primary); font-size:18px; }
+    .dcard p{ margin:0; color:var(--muted-text) }
+
+    /* ===========================
+       Diagnostics: left list + right panel
+       =========================== */
+    .diag{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    .diag-list{ display:flex;flex-direction:column;gap:12px; }
+    .diag-item{
+      border:2px solid rgba(7,60,60,0.12);
+      padding:12px;border-radius:999px;background:white;font-weight:700;
+      display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+      transition: all .16s cubic-bezier(.2,.9,.25,1);
+    }
+    .diag-item:hover{ transform: translateX(6px); background: rgba(10,100,100,0.03); }
+    .diag-item.active{
+      background: linear-gradient(90deg,var(--primary), rgba(10,107,107,0.86));
+      color:#fff;border-color:transparent; box-shadow: 0 14px 36px rgba(6,107,107,0.12);
+    }
+    .diag-detail{
+      min-height:120px;border-radius:12px;padding:18px;background:#fff;border:1px solid rgba(7,60,60,0.04);
+      box-shadow: 0 10px 30px rgba(6,60,60,0.03);
+    }
+
+    /* Research rows */
+    .research{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .research li{ padding:12px 0; border-bottom:1px solid rgba(7,60,60,0.03); color:var(--muted-text); list-style:none; margin:0; }
+
+    /* Callback form */
+    .callback{
+      background: linear-gradient(0deg, rgba(6,107,107,0.95), rgba(6,107,107,0.95));
+      color:#fff;padding:22px;border-radius:18px;
+      display:flex;gap:18px;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .callback .form{ display:flex;gap:12px;flex-wrap:wrap;align-items:center; }
+    .callback input{
+      padding:12px 14px;border-radius:10px;border:none;min-width:160px;
+    }
+    .callback .send{background:var(--accent);color:#06323a;padding:10px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+
+    footer{padding:40px 0;color:var(--muted-text);font-size:14px;text-align:center}
+
+    /* ===========================
+       Responsive
+       =========================== */
+    @media (max-width:1100px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .diag{grid-template-columns:1fr}
+      .hero-illustration{ width:260px }
+    }
+    @media (max-width:720px){
+      .mobile-only{ display:inline-flex }
+      .desktop-only{ display:none }
+      .hero{flex-direction:column}
+      .section-title{font-size:22px}
+      h1{font-size:28px}
+      .grid{grid-template-columns:1fr}
+      .container{width:95%}
+      .carousel .card{min-width:220px}
+      .carousel-nav{ display:none }
+      .hero-illustration{ text-align:center; width:100%; margin-top:8px; }
+      .callback{ flex-direction:column; align-items:stretch }
+    }
+
+    /* Accessibility focus */
+    .pill:focus, .card:focus, .circle-btn:focus, .diag-item:focus, .cta-btn:focus, .ghost:focus {
+      outline:3px solid rgba(6,107,107,0.12);
+      outline-offset:4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      .carousel { scroll-behavior: auto; }
+    }
+
+    /* small util */
+    .muted-small{ color:var(--muted-text); font-size:13px }
+
+    /* ------------------------------------------------------------------
+       ADDITIONAL CSS COPIED FROM HOME PAGE FOR HEADER/FOOTER TO ENSURE
+       EXACT MATCH (placed last so it can override above where needed)
+       ------------------------------------------------------------------ */
+    /* Reset & base for header/footer specifics */
+    .header { background: white; border-bottom: 1px solid #e0e0e0; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
+    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; gap: 20px; }
+    .nav-left { display:flex; gap:18px; align-items:center; min-width:0; }
+    .nav-item { color: #0a5f71; font-weight:600; font-size:14px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; }
+    .logo { text-align:center; display:flex; flex-direction:column; align-items:center; gap:2px; flex: 0 0 auto; pointer-events: auto; position: static; transform: none; }
+    .logo-text { color: #0D9DB5; font-size:28px; font-weight:700; line-height:1; }
+    .logo-subtext { color: #0D9DB5; font-size:11px; letter-spacing:2px; }
+    .icon-btn { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .phone-icon { background:#FFB800; color:white; }
+    .notification-icon { background:#FF9800; color:white; }
+    .emergency-num { font-weight:700; color:#333; font-size:13px; }
+    .lang-select { border:1px solid #ddd; padding:5px 15px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; }
+
+    /* Mobile nav toggle */
+    .nav-toggle { display:none; width:44px; height:44px; border-radius:8px; align-items:center; justify-content:center; cursor:pointer; border:1px solid transparent; background:transparent; }
+    .nav-toggle:focus { outline:2px solid rgba(13,157,181,0.18); }
+
+    .mobile-menu {
+      display:none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 64px;
+      background: white;
+      border-bottom: 1px solid #eee;
+      z-index:1099;
+      padding:12px 20px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.06);
+      max-height: calc(100vh - 64px);
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .mobile-menu[aria-hidden="false"] { display:block; }
+    .mobile-menu .menu-row { display:flex; flex-direction:column; gap:8px; }
+    .mobile-menu .menu-row .nav-item { font-size:15px; padding:10px 6px; border-radius:8px; }
+
+    /* Footer styles (from home page) */
+    .footer { background:#0a5f71; color:white; padding:40px 0 20px; }
+    .footer-container { max-width:1400px; margin:0 auto; padding:0 20px; }
+    .footer-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-bottom:28px; }
+    .footer-logo { font-size:20px; font-weight:700; color:#FFD700; margin-bottom:6px; }
+    .footer-logo-sub { font-size:9px; letter-spacing:2px; color:#FFD700; }
+    .footer-text { color:rgba(255,255,255,0.85); font-size:14px; line-height:1.6; margin:14px 0; }
+    .social-links { display:flex; gap:10px; margin-top:6px; }
+    .social-link { width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; font-size:16px; transition:background 0.3s; }
+    .footer-heading { color:#FFD700; font-size:13px; font-weight:700; margin-bottom:12px; text-transform:uppercase; }
+    .footer-links { list-style:none; padding:0; margin:0; }
+    .footer-links li { margin-bottom:8px; }
+    .footer-links a { color:rgba(255,255,255,0.9); text-decoration:none; font-size:14px; transition:color 0.3s; }
+    .footer-links a:hover { color:#FFD700; }
+    .footer-contact-item { display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; }
+    .contact-icon { color:#FFD700; font-size:18px; flex-shrink:0; }
+    .footer-contact-label { color:rgba(255,255,255,0.8); font-size:12px; margin-bottom:4px; }
+    .footer-contact-value { color:white; text-decoration:none; font-weight:700; font-size:14px; }
+
+    .app-section { background: rgba(255,255,255,0.04); border-radius:12px; padding:16px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .app-section-text { color: rgba(255,255,255,0.95); font-size:14px; }
+    .app-buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .app-button { display:flex; align-items:center; gap:10px; background:black; padding:8px 12px; border-radius:8px; text-decoration:none; color:white; font-size:13px; transition:transform 0.2s; }
+    .app-button:hover { transform: translateY(-3px); }
+
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.07); padding:14px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .copyright { color:rgba(255,255,255,0.75); font-size:13px; }
+    .footer-legal { display:flex; gap:12px; flex-wrap:wrap; }
+    .footer-legal a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:13px; transition:color 0.2s; }
+    .footer-legal a:hover { color:#FFD700; }
+
+    /* Mobile adjustments for header/footer from home page */
+    @media (max-width:900px) {
+      .desktop-only { display:none !important; }
+      .mobile-only { display:flex !important; align-items:center; gap:12px; }
+      .nav-toggle { display:flex; }
+      .logo { position: absolute; left: 50%; transform: translateX(-50%); pointer-events: none; }
+      .nav-container .logo { pointer-events: auto; }
+    }
+    @media (max-width:600px){
+      .logo-text{ font-size:18px;}
+      .logo-subtext{ font-size:9px;}
+    }
+
+  </style>
+</head>
+<body>
+  <!-- HEADER: replaced with header markup from the home page to match exactly -->
+  <header class="header">
+    <div class="container nav-container" role="navigation" aria-label="Main navigation">
+      <div class="nav-left" style="align-items:center;">
+        <button class="nav-toggle mobile-only" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" title="Menu" aria-label="Open menu">
+          <!-- simple hamburger -->
+          <svg width="22" height="14" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect y="1" width="24" height="2" rx="1" fill="#0a5f71"/>
+            <rect y="7" width="24" height="2" rx="1" fill="#0a5f71"/>
+            <rect y="13" width="24" height="2" rx="1" fill="#0a5f71"/>
+          </svg>
+        </button>
+
+        <div class="nav-item desktop-only reveal-fade" data-animate>DISCOVER Exly ▾</div>
+        <div class="nav-item desktop-only reveal-fade" data-animate>FIND HOSPITAL ▾</div>
+      </div>
+
+      <div class="logo" aria-hidden="false">
+        <div class="logo-text reveal-fade" data-animate>Exly</div>
+        <div class="logo-subtext reveal-fade" data-animate>HOSPITALS</div>
+      </div>
+
+      <div class="flex" style="align-items:center;">
+        <div class="nav-item desktop-only reveal-fade" data-animate>MEDICAL SERVICES ▾</div>
+        <div class="nav-item desktop-only reveal-fade" data-animate>HEALTH LIBRARY ▾</div>
+      </div>
+
+    </div>
+
+    <!-- mobile menu -->
+    <nav id="mobileMenu" class="mobile-menu" aria-hidden="true" aria-label="Mobile menu">
+      <div class="menu-row">
+        <a class="nav-item" href="#">Find Hospital</a>
+        <a class="nav-item" href="#">Book Appointment</a>
+        <a class="nav-item" href="#">Medical Services</a>
+        <a class="nav-item" href="#">Health Library</a>
+        <a class="nav-item" href="#">Emergency: 1066</a>
+        <a class="nav-item" href="#">Exly 24/7 App</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left fade-in" aria-hidden="false">
+        <h1 id="hero-title">Best Cardiology Hospital in Kolkata</h1>
+        <p class="lead">Apollo Heart Institute at Apollo Multispeciality Hospitals, Kolkata is renowned for delivering advanced Cardio care tailored to individual patient needs, achieving exceptional outcomes with compassion and precision.</p>
+        <div class="hero-actions" role="group" aria-label="Hero actions">
+          <button class="cta-btn" aria-label="Book Appointment Hero">Book Appointment ➜</button>
+          <button class="ghost" aria-label="Request Callback Hero">Request Callback ➜</button>
+        </div>
+
+        <div class="pill-row" role="tablist" aria-label="Quick links">
+          <button class="pill" role="tab" tabindex="0">Sub Specialities</button>
+          <button class="pill" role="tab" tabindex="0">Cutting-edge Technology</button>
+          <button class="pill" role="tab" tabindex="0">Diagnostics & Tests</button>
+          <button class="pill" role="tab" tabindex="0">Research</button>
+        </div>
+      </div>
+      <div class="hero-illustration" aria-hidden="true">
+        <svg width="280" height="220" viewBox="0 0 280 220" aria-hidden="true" role="img" focusable="false">
+          <rect rx="18" width="280" height="220" fill="#eaf6f6"></rect>
+          <circle cx="80" cy="80" r="46" fill="#fff" stroke="#0a6b6b" opacity="0.08"></circle>
+          <text x="40" y="140" fill="#0a6b6b" font-size="20" font-family="Inter">Heart Care</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- TOTAL CASES -->
+    <section aria-labelledby="cases">
+      <h2 id="cases" class="section-title">Total Cases Treated For Cardiology In Kolkata</h2>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;padding:18px;background:#fff;border-radius:10px;border-left:4px solid var(--primary); box-shadow:0 8px 24px rgba(6,60,60,0.03)">
+          <strong>We handled over 5666 inpatient (IPD) cases.</strong>
+          <div class="muted-small" style="margin-top:8px">Comprehensive inpatient care including surgery, rehabilitation and follow-up.</div>
+        </div>
+        <div style="flex:1;min-width:220px;padding:18px;background:#fff;border-radius:10px; box-shadow:0 8px 24px rgba(6,60,60,0.03)">
+          <strong>Our success rate is an impressive 98%, achieved through expertise and precision.</strong>
+          <div class="muted-small" style="margin-top:8px">Outcome-driven protocols and multidisciplinary teams.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCEDURES CAROUSEL -->
+    <section aria-labelledby="procedures">
+      <h2 id="procedures" class="section-title">Top Procedures & Treatments For Cardiology In Kolkata</h2>
+      <div class="carousel-wrap" aria-hidden="false">
+        <div class="carousel" id="procCarousel" tabindex="0" aria-label="Procedures carousel">
+          <article class="card" tabindex="0" role="article" aria-label="Cardiac Resynchronization Therapy">
+            <h4>Cardiac Resynchronization Therapy</h4>
+            <p>CRTD/CRTP helps patients with heart failure coordinate chambers to contract efficiently and improve function.</p>
+            <a href="#" aria-label="Learn more about Cardiac Resynchronization Therapy">Learn More</a>
+          </article>
+
+          <article class="card" tabindex="0" role="article" aria-label="Mitra Clip">
+            <h4>Mitra Clip</h4>
+            <p>Minimally-invasive repair for leaky mitral valves. Symptom relief and improved heart function.</p>
+            <a href="#" aria-label="Learn more about Mitra Clip">Learn More</a>
+          </article>
+
+          <article class="card" tabindex="0" role="article" aria-label="Transcatheter Aortic Valve Implantation">
+            <h4>Transcatheter Aortic Valve Implantation</h4>
+            <p>TAVI/TAVR replaces aortic valves without open heart surgery — ideal for high-risk patients.</p>
+            <a href="#" aria-label="Learn more about TAVI">Learn More</a>
+          </article>
+
+          <article class="card" tabindex="0" role="article" aria-label="Valve Edge to Edge Repair">
+            <h4>Valve Edge to Edge Repair</h4>
+            <p>Mimics open surgery minus extensive incisions — quicker recovery and less risk for mitral repair.</p>
+            <a href="#" aria-label="Learn more about Valve Edge to Edge Repair">Learn More</a>
+          </article>
+        </div>
+
+        <div class="carousel-nav" aria-hidden="true">
+          <button class="circle-btn" id="prevProc" aria-label="Previous procedures">‹</button>
+          <button class="circle-btn" id="nextProc" aria-label="Next procedures">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPES OF DISEASES (grid) -->
+    <section aria-labelledby="diseases">
+      <h2 id="diseases" class="section-title">Types Of Diseases Treated Under Cardiology</h2>
+      <div class="grid" role="list">
+        <article class="dcard" role="listitem">
+          <h3>Ischemic Heart Disease (IHD)</h3>
+          <p>IHD is characterized by reduced blood flow to the heart, often causing chest pain or heart attacks. Our approach prevents progression.</p>
+          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about IHD">Learn More</a>
+        </article>
+
+        <article class="dcard highlight" role="listitem">
+          <h3>Valvular Heart Disease</h3>
+          <p>Diseased heart valves impede blood flow. Surgical & medical interventions help patients regain function.</p>
+          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Valvular Heart Disease">Learn More</a>
+        </article>
+
+        <article class="dcard" role="listitem">
+          <h3>Cardiac Rhythm Disorders</h3>
+          <p>Arrhythmias such as AF disturb normal heartbeats. Treatments restore rhythm and reduce stroke risk.</p>
+          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Cardiac Rhythm Disorders">Learn More</a>
+        </article>
+
+        <article class="dcard" role="listitem">
+          <h3>Aneurysm Disorders</h3>
+          <p>Artery wall weakness can threaten rupture. Precise treatments prevent complications and stabilize arteries.</p>
+          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Aneurysm Disorders">Learn More</a>
+        </article>
+
+        <article class="dcard" role="listitem" style="grid-column: span 2;">
+          <h3>Peripheral Vascular Diseases</h3>
+          <p>Diseases that cost blood flow to limbs — our treatments aim to restore circulation and improve lifestyle.</p>
+          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Peripheral Vascular Diseases">Learn More</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- SUB SPECIALITIES -->
+    <section aria-labelledby="subspecial">
+      <h2 id="subspecial" class="section-title">List Of Sub Specialities In Cardiology</h2>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+        <article class="dcard"><h3>Cardiac Electrophysiology</h3><p>Diagnosis and ablation of arrhythmias with advanced mapping.</p></article>
+        <article class="dcard"><h3>Pediatric Cardiology</h3><p>Care for congenital and acquired heart diseases in children.</p></article>
+        <article class="dcard"><h3>Structural Heart Disease</h3><p>Minimally invasive TAVI for valve repair and replacement.</p></article>
+        <article class="dcard"><h3>Noninvasive Cardiology</h3><p>Echo and stress testing to assess heart function without surgery.</p></article>
+        <article class="dcard"><h3>Cardiothoracic & Vascular Surgery</h3><p>Surgical services for heart, lungs, and vascular system.</p></article>
+      </div>
+    </section>
+
+    <!-- DIAGNOSTICS -->
+    <section aria-labelledby="diagtitle">
+      <h2 id="diagtitle" class="section-title">Diagnostics And Tests Under Cardiology</h2>
+      <div class="diag" id="diagnostics">
+        <div class="diag-list" role="tablist" aria-label="Diagnostics">
+          <button class="diag-item" data-detail="Echocardiography" tabindex="0">Echocardiography <span aria-hidden="true">→</span></button>
+          <button class="diag-item" data-detail="HUTT" tabindex="0">HUTT <span aria-hidden="true">→</span></button>
+          <button class="diag-item" data-detail="PETCT" tabindex="0">PETCT <span aria-hidden="true">→</span></button>
+          <button class="diag-item" data-detail="Gamma Camera" tabindex="0">Gamma Camera <span aria-hidden="true">→</span></button>
+          <button class="diag-item active" data-detail="CT Angio" tabindex="0">CT Angio <span aria-hidden="true">→</span></button>
+          <button class="diag-item" data-detail="TMT" tabindex="0">TMT <span aria-hidden="true">→</span></button>
+        </div>
+
+        <div class="diag-detail" id="diagDetail" tabindex="0" aria-live="polite">
+          <h3>CT Angio</h3>
+          <p style="color:var(--muted-text)">Visualizes blood vessels and helps assess blockages, aneurysms and vascular anatomy quickly and non-invasively.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY USED (short) -->
+    <section aria-labelledby="tech">
+      <h2 id="tech" class="section-title">Technology Used</h2>
+      <p style="color:var(--muted-text);max-width:900px">Da Vinci Xi Robotic Cardiac Surgery — precision robotic systems used for minimally invasive cardiac operations, improving recovery & accuracy.</p>
+    </section>
+
+    <!-- RESEARCH & INNOVATION -->
+    <section aria-labelledby="research">
+      <h2 id="research" class="section-title">Research And Innovation</h2>
+      <div class="research" role="list">
+        <ul style="padding:0;margin:0;">
+          <li>&raquo; The Effect of Tirzepatide versus Dulaglutide on Major Adverse Cardiovascular Events (SURPASS-CVOT)</li>
+          <li>&raquo; Phase IV study on Vericiguat therapy for chronic heart failure after worsening event</li>
+          <li>&raquo; POSEIDON — systemic inflammation in atherosclerotic cardiovascular disease and heart failure</li>
+        </ul>
+        <ul style="padding:0;margin:0;">
+          <li>&raquo; VICTORION-2 PREVENT — inclisiran trial on major adverse CV events</li>
+          <li>&raquo; CardiaCare RR2 — wearable neuromodulation system to reduce AF burden</li>
+          <li>&raquo; Published papers on various clinical and translational studies</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REQUEST A CALLBACK -->
+    <section>
+      <div class="callback" role="region" aria-labelledby="callbackTitle">
+        <div style="max-width:66%">
+          <h3 id="callbackTitle" style="margin:0 0 6px 0;font-size:22px">Could not find what you are looking for?</h3>
+          <p style="margin:0 0 10px;color:rgba(255,255,255,0.95)">Request a Callback — we'll connect you with a specialist to discuss next steps.</p>
+          <div class="form" role="form" aria-label="Request callback form">
+            <input type="text" id="name" placeholder="Name" aria-label="Name">
+            <input type="tel" id="phone" placeholder="Mobile Number" aria-label="Mobile number">
+            <button class="send" id="sendOTP" aria-controls="otpMsg">Send OTP</button>
+            <input type="text" id="otp" placeholder="Enter OTP" aria-label="Enter OTP" style="min-width:120px">
+            <button class="send" id="submitCB">Request</button>
+          </div>
+          <div id="otpMsg" style="margin-top:12px;color:rgba(255,255,255,0.95);font-size:13px"></div>
+        </div>
+        <div style="width:200px;text-align:center">
+          <svg width="140" height="140" viewBox="0 0 200 200" aria-hidden="true" role="img" focusable="false">
+            <circle cx="100" cy="100" r="98" fill="#fff" opacity="0.06"></circle>
+            <g fill="#fff">
+              <circle cx="100" cy="72" r="26" />
+              <rect x="56" y="110" width="88" height="46" rx="10" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER: replaced with footer markup from the home page to match exactly -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="app-section">
+        <div class="app-section-text">
+          <h3 style="font-size:16px; margin-bottom:6px;">Download Exly 24/7 App</h3>
+          <p style="margin:0;">Manage appointments, access reports, order medicines and consult doctors online – all in one app.</p>
+        </div>
+        <div class="app-buttons">
+          <a href="#" class="app-button" aria-label="Download on the App Store">
+            <span></span>
+            <span><strong>Download on the</strong><br style="line-height:1;">App Store</span>
+          </a>
+          <a href="#" class="app-button" aria-label="Get it on Google Play">
+            <span>▶</span>
+            <span><strong>Get it on</strong><br style="line-height:1;">Google Play</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Exly</div>
+          <div class="footer-logo-sub">HOSPITALS</div>
+          <p class="footer-text">
+            Exly Hospitals is India’s leading integrated healthcare provider, delivering world-class patient care with cutting-edge technology and compassionate expertise.
+          </p>
+          <div class="social-links" aria-hidden="true">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">X</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#">Find a Doctor</a></li>
+            <li><a href="#">Book Appointment</a></li>
+            <li><a href="#">Health Check Packages</a></li>
+            <li><a href="#">International Patients</a></li>
+            <li><a href="#">Insurance &amp; TPA</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Centres of Excellence</h4>
+          <ul class="footer-links">
+            <li><a href="#">Cardiac Sciences</a></li>
+            <li><a href="#">Oncology</a></li>
+            <li><a href="#">Neurosciences</a></li>
+            <li><a href="#">Orthopaedics</a></li>
+            <li><a href="#">Transplants</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <div class="footer-contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="footer-contact-label">Corporate Office</div>
+              <div class="footer-contact-value">Exly Hospitals Enterprise Ltd., Chennai, India</div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="footer-contact-label">24x7 Emergency</div>
+              <a href="tel:1066" class="footer-contact-value">1066</a>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="footer-contact-label">Email</div>
+              <a href="mailto:info@exlyhospitals.com" class="footer-contact-value">info@exlyhospitals.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">© 2025 Exly Hospitals Enterprise Ltd. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">CSR</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS: Tab switching, FAQ toggles, mobile menu, animations, and modal video -->
+  <script>
+    /* ===========================
+       Mobile menu toggle (ARIA-driven)
+       Uses same accessible behavior as on the home page to match exactly
+       =========================== */
+    (function() {
+      const navToggle = document.getElementById('navToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (navToggle && mobileMenu) {
+        function openMenu() {
+          navToggle.setAttribute('aria-expanded', 'true');
+          mobileMenu.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          // move focus to first link for accessibility
+          const first = mobileMenu.querySelector('.nav-item, a');
+          if (first) first.focus();
+        }
+        function closeMenu() {
+          navToggle.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          navToggle.focus();
+        }
+
+        navToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+          if (expanded) closeMenu();
+          else openMenu();
+        });
+
+        // close on outside click
+        document.addEventListener('click', function(e) {
+          if (window.innerWidth <= 900 && mobileMenu.getAttribute('aria-hidden') === 'false') {
+            if (!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) {
+              closeMenu();
+            }
+          }
+        });
+
+        // ESC closes mobile menu
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
+            closeMenu();
+          }
+        });
+
+        // Ensure menu closes when resizing to desktop
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 900) {
+            if (mobileMenu.getAttribute('aria-hidden') === 'false') closeMenu();
+          }
+        });
+      }
+    })();
+
+    /* ===========================
+       Procedures carousel controls
+       =========================== */
+    (function(){
+      const carousel = document.getElementById('procCarousel');
+      const prev = document.getElementById('prevProc');
+      const next = document.getElementById('nextProc');
+
+      if (carousel) {
+        function scrollByCard(direction = 1){
+          const card = carousel.querySelector('.card');
+          if(!card) return;
+          const gap = 20; // matches CSS gap
+          const style = window.getComputedStyle(card);
+          const width = card.getBoundingClientRect().width;
+          const offset = Math.round(width + gap);
+          carousel.scrollBy({left: offset * direction, behavior:'smooth'});
+        }
+        if(prev) prev.addEventListener('click', ()=> scrollByCard(-1));
+        if(next) next.addEventListener('click', ()=> scrollByCard(1));
+        carousel.addEventListener('keydown', (e)=>{
+          if(e.key==='ArrowLeft') scrollByCard(-1);
+          if(e.key==='ArrowRight') scrollByCard(1);
+        });
+      }
+    })();
+
+    /* ===========================
+       Diagnostics detail swap
+       =========================== */
+    (function(){
+      const items = document.querySelectorAll('.diag-item');
+      const detail = document.getElementById('diagDetail');
+
+      function setActive(btn){
+        items.forEach(i=>i.classList.remove('active'));
+        btn.classList.add('active');
+        const title = btn.getAttribute('data-detail') || 'Detail';
+        detail.innerHTML = `<h3>${title}</h3><p style="color:var(--muted-text)">Detailed information about <strong>${title}</strong>. This panel updates when you select a test from the list. Add full descriptions here.</p>`;
+      }
+      items.forEach(it=>{
+        it.addEventListener('click', ()=> setActive(it));
+        it.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); setActive(it);} });
+      });
+    })();
+
+    /* ===========================
+       Simple OTP simulation for callback form
+       =========================== */
+    (function(){
+      const sendBtn = document.getElementById('sendOTP');
+      const submit = document.getElementById('submitCB');
+      const otpMsg = document.getElementById('otpMsg');
+      let currentOTP = null;
+      if(sendBtn){
+        sendBtn.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const phone = document.getElementById('phone').value.trim();
+          if(!phone){ otpMsg.textContent = 'Please enter a valid mobile number.'; return; }
+          // simulate OTP
+          currentOTP = Math.floor(1000 + Math.random()*9000).toString();
+          otpMsg.textContent = 'OTP sent (simulation): ' + currentOTP;
+          // NOTE: in production, call an API and never display the OTP in UI
+        });
+      }
+      if(submit){
+        submit.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const entered = document.getElementById('otp').value.trim();
+          const name = document.getElementById('name').value.trim();
+          if(!name || !entered){ otpMsg.textContent='Please enter your name and OTP.'; return; }
+          if(entered === currentOTP){
+            otpMsg.textContent = 'Callback requested. Our team will call you shortly.';
+          } else {
+            otpMsg.textContent = 'Incorrect OTP. Please try again.';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
