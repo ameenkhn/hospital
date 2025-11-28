@@ -80,12 +80,6 @@
     .reveal-brand.in-view { animation: brandGlide 480ms cubic-bezier(.2,.9,.2,1) both; }
     .reveal-footer.in-view { animation: footerRise 480ms cubic-bezier(.2,.9,.2,1) both; }
 
-    /* gentle floating used on hero portrait or decorative images */
-    .float-anim { will-change: transform; }
-    @media (prefers-reduced-motion: no-preference) {
-      .float-anim { animation: subtleFloat 6s ease-in-out infinite; transform-origin:center; }
-    }
-
     /* CTA pulse (subtle) */
     .cta-pulse { display:inline-block; will-change: transform, box-shadow; }
     @media (prefers-reduced-motion: no-preference) {
@@ -121,7 +115,7 @@
 
     /* small accessibility: disable animations for reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      .reveal, .reveal-flip, .reveal-hero, .float-anim, .cta-pulse, .team-card, .brands-wrapper::after, .modal, .brand-item, .typewriter { transition: none !important; animation: none !important; transform: none !important; opacity:1 !important; border-right:none !important; }
+      .reveal, .reveal-flip, .reveal-hero, .cta-pulse, .team-card, .brands-wrapper::after, .modal, .brand-item, .typewriter { transition: none !important; animation: none !important; transform: none !important; opacity:1 !important; border-right:none !important; }
     }
 
     /* =========================================================================
@@ -160,7 +154,7 @@
     .rail-btn svg{width:28px;height:28px}
 
     .hero{ display:grid;grid-template-columns:420px 1fr;gap:32px;align-items:start;margin-bottom:18px; }
-    .hero .portrait{ border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft); border:1px solid rgba(6,60,60,0.04); background:linear-gradient(180deg,#254d4d,#083434); min-height:360px; display:flex;align-items:center;justify-content:center; }
+    .hero .portrait{ border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft); border:1px solid rgba(6,60,60,0.04); min-height:60px; display:flex;align-items:center;justify-content:center; }
     .hero h1{ font-family:'Source Serif 4',serif;font-size:36px;margin:0 0 12px;color: #0D9DB5 }
     .hero p.lead{ color:var(--muted-text);font-size:16px;margin:0 0 10px;max-width:80ch }
     .hero .hero-actions{ display:flex;gap:12px;margin-top:12px }
@@ -377,7 +371,7 @@
     <section class="hero" aria-labelledby="visionTitle">
       <div class="portrait reveal-hero" data-animate>
         <!-- hero image -->
-         <img src="/assets/Indias-first-AI-powered-hospital-opens-in-Bengaluru.jpg" alt="Hero image placeholder" style="padding-top: 80px;" class="float-anim">
+         <img src="/assets/ghjjk.png" alt="Hero image placeholder" style="display: block;">
       </div>
 
       <div>
@@ -427,7 +421,7 @@
 
       <div class="imgwrap reveal-rotate" data-animate>
         <!-- REPLACE: replace this SVG with founder portrait or hero image -->
-         <img src="../assets/66e1b15983b8099cf9fd7d96.webp" alt="Mission image placeholder" class="float-anim">
+         <img src="../assets/66e1b15983b8099cf9fd7d96.webp" alt="Mission image placeholder" >
       </div>
     </section>
 
@@ -451,7 +445,7 @@
       <article class="leader-highlight reveal-flip" role="article" aria-labelledby="founderName" data-animate>
         <div class="leader-photo reveal-rotate" aria-hidden="true" data-animate>
           <!-- REPLACE: founder portrait -->
-                   <img src="../assets/steve-jobs.avif" alt="Founder portrait placeholder" class="float-anim">
+          <img src="../assets/steve-jobs.avif" alt="Founder portrait placeholder" >
         </div>
         <div class="leader-info">
           <h3 id="founderName">Dr. Prathap C. Reddy</h3>
