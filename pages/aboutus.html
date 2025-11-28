@@ -28,7 +28,6 @@
       --shadow-soft: 0 12px 30px rgba(6,60,60,0.06);
       --gap: 20px;
       --transition: 180ms cubic-bezier(.2,.9,.2,1);
-      --max-hero-img-height: 420px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -40,7 +39,7 @@
       -webkit-font-smoothing:antialiased;
       line-height:1.5;
       font-size:16px;
-      -webkit-font-smoothing:antialiased;
+      background-attachment: fixed;
     }
     img,svg{display:block;max-width:100%;height:auto}
     a{color:var(--primary);text-decoration:none}
@@ -48,7 +47,9 @@
     p, .muted, .lead, li { text-align: justify; }
 
     /* =========================================================================
-       ANIMATIONS: (keeps existing animations; respects reduced-motion)
+       ANIMATIONS: keyframes + defaults
+       - many section-specific variants
+       - respects prefers-reduced-motion
        ========================================================================= */
     @media (prefers-reduced-motion: no-preference) {
       @keyframes slideInFromTop { from { opacity:0; transform: translateY(-16px); } to { opacity:1; transform:none; } }
@@ -68,61 +69,74 @@
     .reveal, [data-animate] { opacity:0; transform: translateY(8px); transition: opacity var(--transition), transform var(--transition); will-change: opacity, transform; }
     .reveal.in-view, [data-animate].in-view { opacity:1; transform:none; }
 
-    /* Specific variants */
+    /* Specific variants (activated when .in-view is present) */
     .reveal-slide.in-view { animation: slideInFromTop 420ms var(--transition) both; }
     .reveal-bounce.in-view { animation: logoBounce 620ms cubic-bezier(.2,.9,.2,1) both; }
     .reveal-hero.in-view { animation: heroZoomSkew 680ms cubic-bezier(.15,.9,.18,1) both; transform-origin: center; }
     .reveal-flip.in-view { animation: flipInX 520ms cubic-bezier(.2,.9,.2,1) both; transform-origin: center; }
     .reveal-rotate.in-view { animation: rotateIn 520ms cubic-bezier(.22,.85,.12,1) both; transform-origin:center; }
-    .reveal-left.in-view { animation: slideInLeft 360ms cubic-bezier(.2,.9,.2,1) both; }
-    .reveal-right.in-view { animation: slideInRight 360ms cubic-bezier(.2,.9,.2,1) both; }
-    .reveal-brand.in-view { animation: brandGlide 420ms cubic-bezier(.2,.9,.2,1) both; }
-    .reveal-footer.in-view { animation: footerRise 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-left.in-view { animation: slideInLeft 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-right.in-view { animation: slideInRight 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-brand.in-view { animation: brandGlide 480ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-footer.in-view { animation: footerRise 480ms cubic-bezier(.2,.9,.2,1) both; }
 
+    /* gentle floating used on hero portrait or decorative images */
     .float-anim { will-change: transform; }
     @media (prefers-reduced-motion: no-preference) {
       .float-anim { animation: subtleFloat 6s ease-in-out infinite; transform-origin:center; }
     }
 
+    /* CTA pulse (subtle) */
     .cta-pulse { display:inline-block; will-change: transform, box-shadow; }
     @media (prefers-reduced-motion: no-preference) {
       .cta-pulse.animated { animation: subtleFloat 2200ms ease-in-out infinite; }
     }
 
+    /* Team cards: slight lift + alternating slide (on hover too) */
     .team-card { transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms; transform-origin: center; backface-visibility:hidden; perspective:1000px; }
     .team-card:focus-within, .team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(6,60,60,0.09); }
 
-    .pill { transition: transform 160ms cubic-bezier(.2,.9,.2,1), box-shadow 160ms; }
+    /* pill micro-interaction */
+    .pill { transition: transform 180ms cubic-bezier(.2,.9,.2,1), box-shadow 180ms; }
     .pill:hover, .pill:focus { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(6,60,60,0.06); outline:none; }
 
+    /* brands shimmer / glide */
     .brands-wrapper { position: relative; overflow:hidden; }
-    .brands-grid { position:relative; z-index:2; display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
-    .brand-item { width:100%; height:56px; display:grid; place-items:center; border-radius:6px; opacity:0.98; transition: transform 260ms; background:#fff; color:#0a5f71; font-weight:700; }
+    .brands-grid { position:relative; z-index:2; display:grid; grid-template-columns: repeat(6,1fr); gap:14px; }
+    .brand-item { width:140px;height:56px; display:grid; place-items:center; border-radius:6px; opacity:0.98; transition: transform 260ms; }
     .brand-item:hover { transform: translateY(-6px); }
 
-    .typewriter { white-space:nowrap; overflow:hidden; border-right: 2px solid rgba(13,157,181,0.9); padding-right:4px; display:inline-block; vertical-align:bottom; max-width:100%; }
+    /* typewriter for center-head h2 (JS will fill text) */
+    .typewriter { white-space:nowrap; overflow:hidden; border-right: 2px solid rgba(13,157,181,0.9); padding-right:4px; }
     @media (prefers-reduced-motion: no-preference) {
       .typewriter.caret-anim { animation: typingCaret 900ms steps(1,start) infinite; }
     }
 
+    /* modal fade (open/close animation) */
     .modal { transition: opacity 220ms var(--transition), transform 220ms var(--transition); transform: translateY(8px); }
     .modal.open { transform: translateY(0); }
 
+    /* footer link micro hover */
+    .app-button:hover { transform: translateY(-3px); transition: transform 200ms; }
+
+    /* small accessibility: disable animations for reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal-flip, .reveal-hero, .float-anim, .cta-pulse, .team-card, .brands-wrapper::after, .modal, .brand-item, .typewriter { transition: none !important; animation: none !important; transform: none !important; opacity:1 !important; border-right:none !important; }
     }
 
     /* =========================================================================
-       SITE HEADER & NAV (responsive)
+       SITE HEADER (existing styles preserved)
        ========================================================================= */
     .header { background: white; border-bottom: 1px solid #e0e0e0; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
     .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; gap: 20px; }
     .nav-left { display:flex; gap:18px; align-items:center; min-width:0; flex:1; }
-    .nav-item { color: #0a5f71; font-weight:600; font-size:14px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; margin-right: 32px; margin-left: 8px; }
+    .nav-item { color: #0a5f71; font-weight:600; font-size:14px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; margin-right: 50px;margin-left: 50px; }
     .logo { text-align:center; display:flex; flex-direction:column; align-items:center; gap:2px; flex: 0 0 auto; position:absolute; left:50%; transform:translateX(-50%); pointer-events:auto; }
     .logo-text { color: #0D9DB5; font-size:28px; font-weight:700; line-height:1; }
     .logo-subtext { color: #0D9DB5; font-size:11px; letter-spacing:2px; }
     .icon-btn { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .phone-icon { background:#FFB800; color:white; }
+    .notification-icon { background:#FF9800; color:white; }
     .emergency-num { font-weight:700; color:#333; font-size:13px; }
     .lang-select { border:1px solid #ddd; padding:5px 15px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; }
 
@@ -132,150 +146,187 @@
 
     .mobile-menu { display:none; position: fixed; left: 0; right: 0; top: 64px; background: white; border-bottom: 1px solid #eee; z-index:1099; padding:12px 20px; box-shadow:0 6px 20px rgba(0,0,0,0.06); max-height: calc(100vh - 64px); overflow:auto; -webkit-overflow-scrolling: touch; }
     .mobile-menu[aria-hidden="false"] { display:block; }
+    .mobile-menu .menu-row { display:flex; flex-direction:column; gap:8px; }
+    .mobile-menu .menu-row .nav-item { font-size:15px; padding:10px 6px; border-radius:8px; }
+
+    .desktop-only { display:flex; align-items:center; gap:12px; }
+    .mobile-only { display:none; }
 
     /* =========================================================================
-       MAIN LAYOUT
+       ABOUT PAGE LAYOUT & EXISTING STYLES (kept intact)
        ========================================================================= */
-    .container{ width:var(--container); margin:28px auto; padding-bottom:48px; }
+    .container{width:var(--container);margin:28px auto;padding-bottom:48px}
     .rail-btn{ width:56px;height:56px;border-radius:50%;display:grid;place-items:center; background:linear-gradient(180deg,#fff,#f6fbfb);box-shadow:0 6px 18px rgba(10,30,30,0.06); border:6px solid rgba(10,150,145,0.03);cursor:pointer; }
     .rail-btn svg{width:28px;height:28px}
 
-    /* HERO: fluid, responsive */
-    .hero{ display:grid; grid-template-columns: minmax(240px,420px) 1fr; gap:32px; align-items:start; margin-bottom:18px; }
-    .hero .portrait{ border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-soft); border:1px solid rgba(6,60,60,0.04); background:linear-gradient(180deg,#254d4d,#083434); min-height:320px; display:flex; align-items:center; justify-content:center; }
-    .hero .portrait img { width:100%; height:auto; max-height: var(--max-hero-img-height); object-fit:cover; display:block; }
+    .hero{ display:grid;grid-template-columns:420px 1fr;gap:32px;align-items:start;margin-bottom:18px; }
+    .hero .portrait{ border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft); border:1px solid rgba(6,60,60,0.04); background:linear-gradient(180deg,#254d4d,#083434); min-height:360px; display:flex;align-items:center;justify-content:center; }
+    .hero h1{ font-family:'Source Serif 4',serif;font-size:36px;margin:0 0 12px;color: #0D9DB5 }
+    .hero p.lead{ color:var(--muted-text);font-size:16px;margin:0 0 10px;max-width:80ch }
+    .hero .hero-actions{ display:flex;gap:12px;margin-top:12px }
+    .pill-row{ display:flex;gap:12px;flex-wrap:wrap;margin-top:18px }
+    .pill{ padding:10px 16px;border-radius:999px;border:2px solid rgba(7,60,60,0.08);background:#fff;font-weight:700;color:var(--primary);cursor:pointer }
 
-    .hero h1{ font-family:'Source Serif 4',serif; font-size:36px; margin:0 0 12px; color: #0D9DB5 }
-    .hero p.lead{ color:var(--muted-text); font-size:16px; margin:0 0 10px; max-width:80ch }
-    .hero .hero-actions{ display:flex; gap:12px; margin-top:12px }
-    .pill-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
-    .pill{ padding:10px 16px; border-radius:999px; border:2px solid rgba(7,60,60,0.08); background:#fff; font-weight:700; color:var(--primary); cursor:pointer }
-
-    .section-title{ font-size:28px; font-weight:700; margin:8px 0 18px; color:var(--primary) }
+    .section-title{ font-size:28px;font-weight:700;margin:8px 0 18px;color:var(--primary) }
     .muted{ color:var(--muted-text) }
 
-    .mission{ background:#fff; border-radius:var(--radius-lg); padding:28px; display:grid; grid-template-columns: 1fr 360px; gap:24px; align-items:center; border:1px solid rgba(6,60,60,0.03); box-shadow:0 10px 30px rgba(6,60,60,0.03); }
-    .mission .imgwrap{ border-radius:12px; overflow:hidden; height:220px; display:flex; align-items:center; justify-content:center; }
+    .mission{ background:#fff;border-radius:var(--radius-lg);padding:28px;display:grid; grid-template-columns:1fr 360px;gap:24px;align-items:center;border:1px solid rgba(6,60,60,0.03); box-shadow:0 10px 30px rgba(6,60,60,0.03); }
+    .mission h2{ margin:0 0 8px;font-size:24px }
+    .mission p.lead{ font-weight:700;margin:0 0 12px }
+    .mission .imgwrap{ border-radius:12px;overflow:hidden;height:220px; display:flex; align-items:center; justify-content:center; }
 
-    .center-head{ text-align:center; margin:36px 0 }
-    .center-head h2{ font-size:32px; margin:0 0 6px; }
-    .center-head p{ max-width:1180px; margin:8px auto; color:var(--muted-text) }
+    .center-head{text-align:center;margin:36px 0}
+    .center-head h2{ font-size:32px;margin:0 0 6px }
+    .center-head p{ max-width:1180px;margin:8px auto;color:var(--muted-text) }
 
-    .leader-highlight{ background:#fff; border-radius:14px; padding:18px; border:1px solid rgba(6,60,60,0.06); display:flex; gap:18px; align-items:center; box-shadow:0 8px 22px rgba(6,60,60,0.03); flex-wrap:wrap; }
-    .leader-photo{ width:220px; max-width:46%; height:auto; border-radius:18px; overflow:hidden; flex-shrink:0; }
-    .leader-photo img{ width:100%; height:auto; object-fit:cover; display:block; }
-    .leader-info{ flex:1; min-width:180px; }
-    .leader-info h3{ color: #0D9DB5; margin:0 0 6px }
-    .read-more{ background:transparent; border:2px solid ; color: #0D9DB5; padding:10px 16px; border-radius:999px; cursor:pointer; font-weight:700 }
+    .leader-highlight{ background:#fff;border-radius:14px;padding:18px;border:1px solid rgba(6,60,60,0.06); display:flex;gap:18px;align-items:center;box-shadow:0 8px 22px rgba(6,60,60,0.03); }
+    .leader-photo{ width:220px;height:220px;border-radius:18px;overflow:hidden;flex-shrink:0 }
+    .leader-photo img{ width:100%;height:100%;object-fit:cover }
+    .leader-info h3{ color: #0D9DB5;margin:0 0 6px }
+    .leader-info h4{ margin:0 0 8px }
+    .leader-info p{ color:var(--muted-text);margin:0 0 12px }
+    .read-more{ background:transparent;border:2px solid ;color: #0D9DB5;padding:10px 16px;border-radius:999px;color: #0D9DB5;cursor:pointer;font-weight:700 }
 
-    .modal .panel{ width:min(900px,96%); max-height:86vh; overflow:auto; }
+    .modal{ position:fixed;inset:0;display:grid;place-items:center;background:rgba(6,6,6,0.48);z-index:2000;opacity:0;pointer-events:none;transition:var(--transition) }
+    .modal.open{ opacity:1;pointer-events:auto }
+    .modal .panel{ width:min(900px,96%);max-height:86vh;overflow:auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 20px 50px rgba(6,60,60,0.25) }
+    .modal .close{ background:transparent;border:2px solid rgba(0,0,0,0.06);padding:6px 10px;border-radius:8px;cursor:pointer }
 
-    .team-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:18px; margin-top:18px; }
-    .team-card{ background:#fff; border-radius:12px; padding:16px; border:1px solid rgba(6,60,60,0.05); display:flex; flex-direction:column; }
-    .team-card .thumb{ height:220px; border-radius:8px; overflow:hidden; background:#f7f7f7; }
-    .team-card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .team-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px }
+    .team-card{ background:#fff;border-radius:12px;padding:16px;border:1px solid rgba(6,60,60,0.05);display:flex;flex-direction:column }
+    .team-card .thumb{ height:220px;border-radius:8px;overflow:hidden;background:#f7f7f7 }
     .team-card h4{ margin:12px 0 6px }
-    .team-card p{ margin:0; color:var(--muted-text); flex:1 }
-    .team-card .card-actions{ display:flex; gap:12px; align-items:center; margin-top:12px }
+    .team-card p{ margin:0;color:var(--muted-text);flex:1 }
+    .team-card .card-actions{ display:flex;gap:12px;align-items:center;margin-top:12px }
+    .btn-primary{ background:var(--primary);color:#fff;padding:10px 14px;border-radius:999px;border:none;cursor:pointer }
+    .icon-btn{ background:transparent;border:none;font-size:18px;cursor:pointer;color:var(--muted-text) }
 
-    .brands-wrapper{ margin-top:30px; padding:18px; border-radius:12px }
-    .brands-grid{ display:grid; grid-template-columns: repeat(6, 1fr); gap:14px; align-items:center; justify-items:center; }
-    .brand-item{ min-width:120px; max-width:220px; }
+    .brands-wrapper{ margin-top:30px;padding:18px;border-radius:12px }
+    .brands-grid{ display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-items:center;justify-items:center }
+    .brand-item{ width:140px;height:56px;display:grid;place-items:center;border-radius:6px;opacity:0.98 }
 
-    .cta-block{ margin-top:36px; background:linear-gradient(90deg,#06323a10,#fff); padding:24px; border-radius:12px; display:flex; gap:18px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+    /* Responsive improvements and mobile-first accessibility tweaks */
+    @media (max-width:1100px) {
+      .logo-text { font-size:20px; }
+      .callback-heading { font-size:20px; }
+      .hero-section { padding:48px 0 30px; min-height:260px; }
+      .callback-section { margin:-70px 12px 30px; padding:28px; }
+      .nav-container { padding: 0 16px; }
+    }
+
+    @media (max-width:600px) {
+      .logo-text { font-size:18px; }
+      .logo-subtext { font-size:9px; }
+      .hero-section { padding:36px 0 22px; min-height:220px; }
+      .search-box { padding:12px 14px; font-size:14px; }
+      .specialty-tab { padding:9px 12px; font-size:12px; }
+      .section-title { font-size:18px; }
+      .card-image { height:140px; }
+      .testimonial-card .video-thumbnail { height:140px; }
+      .callback-image > div { width:140px; height:170px; font-size:56px; }
+      .mobile-menu { top:58px; left:0; right:0; }
+      .nav-container { padding:0; }
+      .callback-heading { font-size:26px; }
+      .nav-toggle { width:44px; height:44px; }
+    }
+
+    @media (max-width:900px){
+      .brands-grid{ display:flex;gap:12px;overflow-x:auto;padding:8px }
+      .team-grid{ grid-template-columns:repeat(2,1fr) }
+      .hero{ grid-template-columns:1fr }
+      .mission{ grid-template-columns:1fr }
+      .desktop-only { display:none !important; } 
+      .mobile-only { display:flex !important; align-items:center; gap:12px; }
+      .nav-toggle { display:flex; }
+      .nav-container { position:relative; padding: 0 12px; align-items:center; }
+      .nav-left { gap:10px; }
+      .nav-container .logo { pointer-events: auto; }
+    }
+
+    @media (max-width:640px){
+      .team-grid{ grid-template-columns:1fr }
+      .brands-grid{ gap:10px }
+      header.site-header{ padding:10px }
+      .hero h1{ font-size:26px }
+      .center-head h2{ font-size:24px }
+    }
+
+    .cta-block{ margin-top:36px;background:linear-gradient(90deg,#06323a10,#fff);padding:24px;border-radius:12px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap }
     .cta-block h3{ margin:0 }
-    .cta-block p{ margin:0; color:var(--muted-text) }
+    .cta-block p{ margin:0;color:var(--muted-text) }
 
-    /* FOOTER */
+    /* =========================================================================
+       EXLY-STYLE FOOTER (kept intact)
+       ========================================================================= */
     .footer { background:#0a5f71; color:white; padding:40px 0 20px; }
     .footer-container { width: var(--container); margin: 0 auto; padding: 0 14px; }
-    .footer-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-bottom:28px; }
+    .footer-grid { display:grid;grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-bottom:28px; }
     .footer-logo { font-size:20px; font-weight:700; color:#FFD700; margin-bottom:6px; }
     .footer-logo-sub { font-size:9px; letter-spacing:2px; color:#FFD700; }
     .footer-text { color:rgba(255,255,255,0.85); font-size:14px; line-height:1.6; margin:14px 0; }
     .social-links { display:flex; gap:10px; margin-top:6px; }
     .social-link { width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; font-size:16px; transition:background 0.3s; }
+    .footer-heading { color:#FFD700; font-size:13px; font-weight:700; margin-bottom:12px; text-transform:uppercase; }
+    .footer-links { list-style:none; padding:0; margin:0; }
+    .footer-links li { margin-bottom:8px; }
+    .footer-links a { color:rgba(255,255,255,0.9); text-decoration:none; font-size:14px; transition:color 0.3s; }
+    .footer-links a:hover { color:#FFD700; }
+    .footer-contact-item { display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; }
+    .contact-icon { color:#FFD700; font-size:18px; flex-shrink:0; }
+    .footer-contact-label { color:rgba(255,255,255,0.8); font-size:12px; margin-bottom:4px; }
+    .footer-contact-value { color:white; text-decoration:none; font-weight:700; font-size:14px; }
+    .app-section { background: rgba(255,255,255,0.04); border-radius:12px; padding:16px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .app-section-text { color: rgba(255,255,255,0.95); font-size:14px; }
+    .app-buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .app-button { display:flex; align-items:center; gap:10px; background:black; padding:8px 12px; border-radius:8px; text-decoration:none; color:white; font-size:13px; transition:transform 0.2s; }
+    .app-button:hover { transform: translateY(-3px); }
+
+    .footer-bottom { border-top:1px solid rgba(255,255,255,0.07); padding:10px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    .copyright { color:rgba(255,255,255,0.75); font-size:13px; }
+    .footer-legal { display:flex; gap:12px; flex-wrap:wrap; }
+    .footer-legal a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:13px; transition:color 0.2s; }
+    .footer-legal a:hover { color:#FFD700; }
+
+    .sr-only{ position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden }
 
     /* -------------------------------------------------------------------------
-       CALLBACK modal & form styles (kept intact)
+       Callback modal styles (copied from home page to match exactly)
        ------------------------------------------------------------------------- */
     .callback-modal { position: fixed; inset: 0; display: none; justify-content: center; align-items: center; background: rgba(0,0,0,0.6); z-index: 10050; padding: 20px; }
     .callback-modal[aria-hidden="false"] { display: flex; }
     .callback-modal-inner { width: 100%; max-width: 920px; border-radius: 16px; background: linear-gradient(135deg, white 0%, white 100%); padding: 28px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); color: #0D9DB5; position: relative; }
     .callback-modal-close { position: absolute; right: 12px; top: 12px; background: rgba(255,255,255,0.06); border: none; color: #fff; font-size: 18px; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; }
+    .callback-form { color: inherit; }
+    .callback-title { color:#0D9DB5; font-size:15px; letter-spacing:1px; margin-bottom:8px; opacity:0.9; }
+    .callback-heading { color:#0D9DB5; font-size:40px; font-weight:800; line-height:1.2; margin-bottom:18px; text-shadow: 0 3px 12px rgba(0,0,0,0.25); }
     .form-row { display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap; width:100%; }
     .form-input { flex: 1; padding: 14px 16px; border: 2px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); border-radius: 10px; color: #0D9DB5; font-size: 15px; transition: 0.3s ease; min-width: 120px; backdrop-filter: blur(4px); }
     .form-input::placeholder { color: #0D9DB5; }
+    .form-input { border-color: #0D9DB5; background: rgba(255, 255, 255, 0.12); box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); outline: #0D9DB5; }
     .otp-btn { background:#FFB800; color:#0a5f71; padding:10px 16px; border:none; border-radius:8px; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .link-text { color:#FFB800; text-decoration:underline; font-size:13px; cursor:pointer; display:inline-block; margin-top:10px; }
     .submit-btn { background:#FFB800; color:#0a5f71; padding:12px 28px; border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:15px; margin-top:10px; }
 
-    /* =========================================================================
-       RESPONSIVE BREAKPOINTS
-       - Very careful: preserve all functionality and IDs while stacking
-       ========================================================================= */
-    @media (max-width:1100px) {
-      .nav-container { padding: 0 16px; }
-      .hero { grid-template-columns: minmax(200px,380px) 1fr; gap:20px; }
-      .mission { grid-template-columns: 1fr 300px; padding:20px; gap:18px; }
-      .leader-photo{ width:200px; }
-      .center-head h2{ font-size:28px; padding-right:0; }
-      .brands-grid { grid-template-columns: repeat(4,1fr); gap:12px; }
-    }
+    /* -------------------------------------------------------------------------
+       NEW: Horizontal scroll track for leadership (team) section
+       ------------------------------------------------------------------------- */
+    .leadership-wrapper { overflow:hidden; margin-top:12px; }
+    .team-track { display:flex; gap:18px; align-items: stretch; padding:8px 6px; overflow-x:auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom:12px; }
+    .team-track::-webkit-scrollbar { height:10px; }
+    .team-track::-webkit-scrollbar-thumb { background: rgba(10,100,100,0.06); border-radius:16px; }
+    .team-track .team-card { min-width: 280px; max-width: 360px; flex: 0 0 auto; scroll-snap-align: start; display:flex;flex-direction:column; background:#fff;border-radius:12px;padding:16px;border:1px solid rgba(6,60,60,0.05);box-shadow:0 10px 30px rgba(6,60,60,0.03); }
+    .leadership-controls { display:flex; gap:12px; justify-content:center; align-items:center; margin-top:14px; }
+    .lead-btn { width:48px;height:48px;border-radius:50%;border:2px solid #0D9DB5;background:white;display:grid;place-items:center;cursor:pointer;font-size:18px;color:#0D9DB5; box-shadow:0 8px 22px rgba(6,20,20,0.06);transition:transform .12s ease,box-shadow .12s ease; }
+    .lead-btn:active{ transform: translateY(1px); }
+    .lead-btn[aria-disabled="true"]{ opacity:0.35; cursor:not-allowed; box-shadow:none; transform:none; }
 
-    @media (max-width:900px) {
-      /* Header adjustments */
-      .logo { position: static; transform:none; margin:0 auto; }
-      .nav-container { padding: 0 12px; align-items:center; }
-      .nav-left { gap:10px; }
-      .nav-item { margin:0 8px; font-size:13px; }
-
-      .desktop-only { display:none !important; }
-      .mobile-only { display:flex !important; align-items:center; gap:12px; }
-
-      .nav-toggle { display:flex; }
-
-      /* Layout stacks to single column */
-      .hero { grid-template-columns: 1fr; gap:16px; }
-      .hero .portrait { min-height: 220px; max-height: 420px; }
-      .mission { grid-template-columns: 1fr; }
-      .leader-highlight { flex-direction: column; gap:12px; align-items:flex-start; }
-      .leader-photo { width:100%; max-width:420px; height:auto; border-radius:12px; }
-      .team-grid { grid-template-columns: repeat(2,1fr); }
-
-      .brands-grid { display:flex; gap:12px; overflow-x:auto; padding:8px; }
-      .brand-item { flex: 0 0 auto; min-width:120px; max-width:220px; }
-
-      .cta-block { flex-direction:column; align-items:flex-start; gap:12px; }
-
-      .footer-grid { grid-template-columns:1fr; }
-      .footer-container { padding: 0 12px; }
-    }
-
-    @media (max-width:640px) {
-      .logo-text { font-size:20px; }
-      .logo-subtext { font-size:10px; }
-      .hero h1{ font-size:26px }
-      .center-head h2{ font-size:22px; }
-      .team-grid { grid-template-columns: 1fr; }
-      .mission { padding:16px; }
-      .container { margin:16px auto; padding-bottom:36px; }
-      .nav-item { font-size:12px; margin:0 6px; }
-      .pill { padding:8px 12px; font-size:14px; }
-      .form-input { padding:12px; font-size:14px; }
-      .callback-modal-inner { padding:18px; }
-    }
-
-    /* Small helpers */
-    .hidden-mobile { display:inline-block; }
-    @media (max-width:900px) { .hidden-mobile { display:none !important; } }
-
-    .sr-only{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+    @media (max-width:900px) { .team-track .team-card { min-width: 84%; max-width: 92%; } }
 
   </style>
 </head>
 <body>
 
-  <!-- ====== HEADER NAV ====== -->
+  <!-- ====== REPLACED HEADER: Exly-style nav (copied from home page template) ====== -->
   <header class="header reveal-slide" role="navigation" aria-label="Main navigation" data-animate>
     <div class="nav-container">
       <div class="nav-left" style="align-items:center;">
@@ -289,12 +340,9 @@
         </button>
 
         <div class="nav-item desktop-only reveal-left" data-animate>
-          <a href="/pages/index.html">HOME</a>
-        </div>
-
+        <a href="/pages/index.html">HOME</a></div>
         <div class="nav-item desktop-only reveal-left" data-animate>
-          <a href="https://www.google.com/maps/search/406+Second+Floor+Udyog+Vihar+Phase+3+Gurugram+Haryana+122016/@28.5049834,77.0776351,16z?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D">FIND HOSPITAL</a>
-        </div>
+        <a href="https://www.google.com/maps/search/406+Second+Floor+Udyog+Vihar+Phase+3+Gurugram+Haryana+122016/@28.5049834,77.0776351,16z?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D">FIND HOSPITAL</a></div>
       </div>
 
       <div class="logo reveal-bounce" aria-hidden="false" data-animate>
@@ -302,10 +350,10 @@
         <div class="logo-subtext">HOSPITALS</div>
       </div>
 
+      <!-- RIGHT SIDE: Medical Services + Request Callback, now using nav-right -->
       <div class="nav-right">
         <div class="nav-item desktop-only reveal-right" data-animate>
-          <a href="/pages/service.html">SERVICES</a>
-        </div>
+        <a href="/pages/service.html">SERVICES</a></div>
         <div class="hero-actions" role="group" aria-label="Hero actions">
           <button id="requestCallbackBtn" class="explore-btn reveal-hero cta-pulse" data-animate style="margin-left: auto ; display:inline-block;padding:12px 32px;background-color:#FFC107;color:#00695C;border-radius:999px;border:none;text-decoration:none;font-weight:600;letter-spacing:0.5px;">REQUEST A CALLBACK →</button>
         </div>
@@ -325,17 +373,19 @@
     </nav>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT (unchanged from your original) -->
   <main id="main-content" class="container" role="main" aria-labelledby="pageTitle">
     <!-- HERO / VISION -->
     <section class="hero" aria-labelledby="visionTitle">
       <div class="portrait reveal-hero" data-animate>
-         <img src="/assets/Indias-first-AI-powered-hospital-opens-in-Bengaluru.jpg" alt="Hero image placeholder" style="padding-top: 0;" class="float-anim">
+        <!-- hero image -->
+         <img src="/assets/Indias-first-AI-powered-hospital-opens-in-Bengaluru.jpg" alt="Hero image placeholder" style="padding-top: 80px;" class="float-anim">
       </div>
 
       <div>
         <h1 id="visionTitle" class="reveal-left" data-animate>Our Vision</h1>
 
+        <!-- Expanded, informative content for the hero/vision -->
         <p class="lead reveal-right" data-animate><strong>To "Touch a Billion Lives"</strong> — we envision a future where high-quality healthcare, research and education reach populations across geographies through integrated services and compassionate care.</p>
 
         <p class="muted reveal" data-animate>
@@ -361,6 +411,7 @@
         <h2 id="missionHeading">Our Mission</h2>
         <p class="lead" style="color: #6b7d7d;">“To bring healthcare of international standards within the reach of every individual.”</p>
 
+        <!-- Expanded mission and core values -->
         <p class="muted">
           Our mission is delivered through four integrated commitments: clinical excellence, patient safety, affordability, and education. We implement standardized clinical pathways, rigorous quality checks, and continuous training so every patient receives care guided by the latest evidence and compassion.
         </p>
@@ -377,13 +428,15 @@
       </div>
 
       <div class="imgwrap reveal-rotate" data-animate>
+        <!-- REPLACE: replace this SVG with founder portrait or hero image -->
          <img src="../assets/66e1b15983b8099cf9fd7d96.webp" alt="Mission image placeholder" class="float-anim">
       </div>
     </section>
 
     <!-- CENTERED INTRO -->
     <section class="center-head reveal" aria-hidden="true" data-animate>
-      <h2 id="centerHeading" class="typewriter caret-anim" data-fulltext="A Story of Clinical Excellence, Built on Strong Differentiation" aria-live="polite" style="padding-right: 0;"></h2>
+      <!-- We'll replace static h2 with a typewriter effect via JS; content preserved -->
+      <h2 id="centerHeading" class="typewriter caret-anim" data-fulltext="A Story of Clinical Excellence, Built on Strong Differentiation" aria-live="polite" style="padding-right: 260px;"></h2>
       <p class="muted">
         We set the bar for patient-focused care through quality governance, research-led interventions and an integrated health delivery model. Exly combines tertiary specialty centers with community clinics and homecare — ensuring continuity of care from prevention to advanced treatment and rehabilitation.
       </p>
@@ -393,18 +446,20 @@
       </p>
     </section>
 
-    <!-- LEADERSHIP HIGHLIGHT -->
+    <!-- LEADERSHIP HIGHLIGHT (founder) -->
     <section aria-labelledby="leadershipHeading">
       <h2 id="leadershipHeading" class="section-title reveal" data-animate>Our Leadership</h2>
 
       <article class="leader-highlight reveal-flip" role="article" aria-labelledby="founderName" data-animate>
         <div class="leader-photo reveal-rotate" aria-hidden="true" data-animate>
-          <img src="../assets/steve-jobs.avif" alt="Founder portrait placeholder" class="float-anim">
+          <!-- REPLACE: founder portrait -->
+                   <img src="../assets/steve-jobs.avif" alt="Founder portrait placeholder" class="float-anim">
         </div>
         <div class="leader-info">
           <h3 id="founderName">Dr. Prathap C. Reddy</h3>
           <h4>Founder & Chairman</h4>
 
+          <!-- Expanded founder blurb -->
           <p class="muted">
             Dr. Prathap C. Reddy is the architect of Exly's integrated healthcare vision. With a career spanning decades, he has led the creation of multi-specialty hospitals, academic institutions, and scalable community programs that prioritize clinical outcomes and public health. Under his leadership Exly has launched pioneering telemedicine initiatives, collaborative research programs, and major preventive health campaigns reaching millions.
           </p>
@@ -413,13 +468,14 @@
             Notable contributions include mentorship of clinical leaders, establishment of postgraduate training programs, and strategic alliances with global research organizations. Dr. Reddy advocates for data-driven care models and equitable access to treatment across income groups.
           </p>
 
-          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="display:flex;gap:12px;align-items:center">
+            <!-- Read more opens detail modal -->
             <button class="read-more" id="openFounder" aria-controls="founderModal">Read More →</button>
           </div>
         </div>
       </article>
 
-      <!-- Modal: founder details -->
+      <!-- Modal: founder details (hidden by default) -->
       <div id="founderModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="founderModalTitle">
         <div class="panel">
           <div style="display:flex;justify-content:space-between;align-items:center">
@@ -427,6 +483,8 @@
             <button class="close" id="closeFounder" aria-label="Close founder details">Close ✕</button>
           </div>
           <hr style="margin:12px 0 18px;border:none;border-top:1px solid #eee">
+
+          <!-- Detailed biography for modal -->
           <p class="muted">
             Dr. Prathap C. Reddy (MBBS, MD) is an industry leader and clinician-administrator with a career focused on integrating clinical excellence with system-level change. He has chaired numerous national bodies, advised public health initiatives, and pioneered clinical quality frameworks that are used across the network. His priorities include capacity building, translational research and equitable healthcare financing.
           </p>
@@ -450,15 +508,18 @@
         </div>
       </div>
 
-      <!-- Leadership track -->
+      <!-- Team grid: horizontally scrollable leadership track -->
       <div class="leadership-wrapper" aria-hidden="false">
         <div class="team-track" id="leadershipTrack" role="list" tabindex="0" aria-label="Leadership team carousel">
+          <!-- Each card includes image, name, role, blurb, and actions -->
           <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team1" data-animate>
             <div class="thumb" aria-hidden="true">
-              <img src="/assets/Shah_Rukh_Khan_at_Jab_Harry_Met_Sejal_new_song_launch_'Beech_Beech_Mein'.jpg" alt="Dr. Preetha Reddy">
+            <img src="/assets/Shah_Rukh_Khan_at_Jab_Harry_Met_Sejal_new_song_launch_'Beech_Beech_Mein'.jpg" alt="Dr. Preetha Reddy">
             </div>
             <h4 id="team1">Dr. Preetha Reddy</h4>
             <p class="muted">Executive Vice Chairperson — drives clinical governance, outcomes measurement and quality programmes across specialties. She champions patient safety, nurse training and accreditation readiness across all centres.</p>
+            <div class="card-actions">
+            </div>
           </article>
 
           <article class="team-card reveal-right" role="listitem" tabindex="0" aria-labelledby="team2" data-animate>
@@ -467,6 +528,8 @@
             </div>
             <h4 id="team2">Dr. Suneeta Reddy</h4>
             <p class="muted">Managing Director — responsible for operations, strategic growth, performance optimization and large scale programme delivery. Leads expansion initiatives and partner integrations to enhance capacity.</p>
+            <div class="card-actions">
+            </div>
           </article>
 
           <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team3" data-animate>
@@ -475,6 +538,8 @@
             </div>
             <h4 id="team3">Ms. Shobana Kamineni</h4>
             <p class="muted">Promoter Director — leads philanthropy, corporate social responsibility and community partnerships. Focused on health equity, educational outreach and scaling sustainable public health programs.</p>
+            <div class="card-actions">
+            </div>
           </article>
 
           <article class="team-card reveal-right" role="listitem" tabindex="0" aria-labelledby="team4" data-animate>
@@ -483,29 +548,44 @@
             </div>
             <h4 id="team4">Dr. Sangita Reddy</h4>
             <p class="muted">Joint Managing Director — leads digital health transformation, partnerships with technology companies, and patient experience programs that include remote monitoring and AI-enabled decision support.</p>
+            <div class="card-actions">
+            </div>
           </article>
 
-          <!-- duplicates intentionally retained -->
+          <!-- Duplicates left intentionally (as in original markup) -->
           <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team4-dup1" data-animate>
-            <div class="thumb" aria-hidden="true"><img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy"></div>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy">
+            </div>
             <h4 id="team4-dup1">Dr. Sangita Reddy</h4>
             <p class="muted">Joint Managing Director — clinical innovation, partnerships and digital health. (Duplicate card intentionally retained for layout)</p>
+            <div class="card-actions">
+            </div>
           </article>
 
           <article class="team-card reveal-right" role="listitem" tabindex="0" aria-labelledby="team4-dup2" data-animate>
-            <div class="thumb" aria-hidden="true"><img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy"></div>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy">
+            </div>
             <h4 id="team4-dup2">Dr. Sangita Reddy</h4>
             <p class="muted">Joint Managing Director — clinical innovation, partnerships and digital health. (Duplicate card intentionally retained for layout)</p>
+            <div class="card-actions">
+            </div>
           </article>
 
           <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team4-dup3" data-animate>
-            <div class="thumb" aria-hidden="true"><img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy"></div>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy">
+            </div>
             <h4 id="team4-dup3">Dr. Sangita Reddy</h4>
             <p class="muted">Joint Managing Director — clinical innovation, partnerships and digital health. (Duplicate card intentionally retained for layout)</p>
+            <div class="card-actions">
+            </div>
           </article>
         </div>
       </div>
 
+      <!-- controls for the leadership horizontal track -->
       <div class="leadership-controls" role="group" aria-label="Leadership carousel controls">
         <button id="leadPrev" class="lead-btn" aria-label="Previous leadership" title="Previous" aria-disabled="true">←</button>
         <button id="leadNext" class="lead-btn" aria-label="Next leadership" title="Next" aria-disabled="true">→</button>
@@ -513,17 +593,17 @@
     </section>
 
     <!-- ALLIANCES CTA -->
-    <section aria-labelledby="alliancesHeading" style="margin-top:36px">
+    <section aria-labelledby="alliancesHeading" style="margin-top:36px" class="reveal">
       <h2 id="alliancesHeading" class="section-title reveal-left" data-animate>Exly Alliances</h2>
       <div>
-        <div class="brands-wrapper" aria-hidden="false">
-          <div class="brands-grid" role="list" aria-label="Partner brands">
-            <div class="brand-item reveal-brand" data-animate role="listitem">Brand A</div>
-            <div class="brand-item reveal-brand" data-animate role="listitem">Brand B</div>
-            <div class="brand-item reveal-brand" data-animate role="listitem">Brand C</div>
-            <div class="brand-item reveal-brand" data-animate role="listitem">Brand D</div>
-            <div class="brand-item reveal-brand" data-animate role="listitem">Brand E</div>
-            <div class="brand-item reveal-brand" data-animate role="listitem">Brand F</div>
+        <div class="brands-wrapper">
+          <div class="brands-grid" aria-hidden="false">
+            <div class="brand-item reveal-brand" data-animate>Brand A</div>
+            <div class="brand-item reveal-brand" data-animate>Brand B</div>
+            <div class="brand-item reveal-brand" data-animate>Brand C</div>
+            <div class="brand-item reveal-brand" data-animate>Brand D</div>
+            <div class="brand-item reveal-brand" data-animate>Brand E</div>
+            <div class="brand-item reveal-brand" data-animate>Brand F</div>
           </div>
         </div>
 
@@ -538,13 +618,21 @@
           <p class="muted">Contact corporate communications or request an institutional brochure for partnerships, research or academic collaborations. We provide tailored partnership briefs, MOUs and program proposals on request.</p>
         </div>
         <div style="display:flex;gap:12px;align-items:center">
-          <button class="btn-accent reveal-right cta-pulse" aria-label="Request brochure" style="margin-left: auto; display: inline-block; padding: 12px 32px; background-color: #FFC107; color: #6b7d7d; border-radius: 999px; border: none; text-decoration: none; font-weight: 600; letter-spacing: 0.5px;" data-animate>Request Brochure</button>
+          <button class="btn-accent reveal-right cta-pulse" aria-label="Request brochure" style="    margin-left: auto; display: inline-block;
+    padding: 12px 32px;
+    background-color: #FFC107;
+    color: #6b7d7d;
+    border-radius: 999px;
+    border: none;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;" data-animate>Request Brochure</button>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- ====== REPLACED FOOTER: Exly-style footer (copied from home page template) ====== -->
   <footer class="footer reveal-footer" role="contentinfo" data-animate>
     <div class="footer-container">
       <div class="app-section reveal" data-animate>
@@ -641,7 +729,7 @@
     </div>
   </footer>
 
-  <!-- CALLBACK Modal -->
+  <!-- Callback Modal (added — identical markup & behavior to home page) -->
   <div id="callbackModal" class="callback-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Request a callback">
     <div class="callback-modal-inner">
       <button class="callback-modal-close" aria-label="Close callback form" id="callbackCloseBtn">✕</button>
@@ -665,7 +753,9 @@
   </div>
 
   <!-- ======================
-       JAVASCRIPT (preserves original behavior + added responsive-friendly animation logic)
+       ORIGINAL ABOUT PAGE JS (unchanged)
+       + Added leadership track JS at the end
+       + Added new animation logic + reduced delays
        ====================== -->
   <script>
     (function(){
@@ -673,24 +763,28 @@
       const modal = document.getElementById('founderModal');
       const openBtn = document.getElementById('openFounder');
       const closeBtn = document.getElementById('closeFounder');
-      if (openBtn && closeBtn && modal) {
-        openBtn.addEventListener('click', () => openModal());
-        closeBtn.addEventListener('click', () => closeModal());
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeModal();
-        });
-      }
+      // Opening: set aria-hidden false, add class, trap focus
+      openBtn.addEventListener('click', () => openModal());
+      closeBtn.addEventListener('click', () => closeModal());
+      modal.addEventListener('click', (e) => {
+        // click outside panel closes modal
+        if (e.target === modal) closeModal();
+      });
       function openModal(){
         modal.classList.add('open');
         modal.setAttribute('aria-hidden','false');
+        // remember previously focused element for restore
         modal.__returnFocus = document.activeElement;
+        // move focus to close button
         closeBtn.focus();
+        // trap focus within modal
         document.addEventListener('focus', trapFocus, true);
         document.addEventListener('keydown', modalKeydown);
       }
       function closeModal(){
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden','true');
+        // restore focus
         if(modal.__returnFocus) modal.__returnFocus.focus();
         document.removeEventListener('focus', trapFocus, true);
         document.removeEventListener('keydown', modalKeydown);
@@ -705,10 +799,11 @@
         if(e.key === 'Escape') closeModal();
       }
 
-      /* ---------- Team "Read More" (placeholder hooks) ---------- */
+      /* ---------- Team "Read More" (cards) ---------- */
       const teamReadBtns = document.querySelectorAll('.team-read');
       teamReadBtns.forEach(btn => {
         btn.addEventListener('click', (ev) => {
+          // Placeholder behavior
           const card = ev.target.closest('.team-card');
           const name = card ? (card.querySelector('h4')?.textContent || 'Profile') : 'Profile';
           alert(name + ' — full profile page (placeholder). Replace this with real profile view or modal.');
@@ -904,54 +999,71 @@
         smoothScrollBy(scrollAmount());
       });
 
+      // keyboard support for buttons
       prevBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
       nextBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
 
+      // allow arrow key control when focus inside track
       track.addEventListener('keydown', function(e){
         if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
         if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
       });
 
+      // update state on user scroll and resize
       track.addEventListener('scroll', function(){
         window.requestAnimationFrame(updateButtons);
       });
       window.addEventListener('resize', function(){ setTimeout(updateButtons, 120); });
 
+      // initialize
       setTimeout(updateButtons, 120);
     })();
 
     /* ===========================
-       Reveal animations via IntersectionObserver (reduced delays)
-       - Typewriter triggered on visibility
+       NEW: IntersectionObserver for reveal animations + hero parallax + CTA pulse control
+       - Reduced delay (snappier)
+       - Adds specific class-based in-view animations
+       - Typewriter for center heading when in-view
        =========================== */
     (function(){
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      // select all elements that should reveal
       const revealElems = document.querySelectorAll('[data-animate], .reveal, .reveal-left, .reveal-right, .reveal-hero, .reveal-flip, .reveal-rotate, .reveal-brand, .reveal-footer');
 
+      // IntersectionObserver (if available and allowed)
       if (!prefersReduced && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
+              // add in-view to trigger CSS animation
               entry.target.classList.add('in-view');
+
+              // for brand item, briefly stagger small transform
+              if (entry.target.classList.contains('reveal-brand')) {
+                // no-op: CSS handles animation
+              }
+
+              // unobserve to avoid retrigger
               observer.unobserve(entry.target);
             }
           });
-        }, { root: null, rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+        }, { root: null, rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
 
         revealElems.forEach(el => observer.observe(el));
       } else {
+        // show everything immediately if reduced motion or no IO
         revealElems.forEach(el => el.classList.add('in-view'));
       }
 
-      // hero parallax (subtle)
+      // Hero parallax: subtle movement (only when allowed)
       if (!prefersReduced) {
         const portrait = document.querySelector('.portrait img');
         function onScroll() {
           if (!portrait) return;
           const rect = portrait.getBoundingClientRect();
           const progress = Math.max(-1, Math.min(1, (rect.top - window.innerHeight/2) / (window.innerHeight)));
-          const max = 12;
+          const max = 12; // px
           const translate = progress * -max;
           portrait.style.transform = `translateY(${translate}px) scale(1.01)`;
         }
@@ -960,7 +1072,7 @@
         setTimeout(onScroll, 100);
       }
 
-      // CTA pulse toggle when in view
+      // CTA pulse: toggle animated only when visible (saves cycles)
       const cta = document.querySelector('.cta-pulse');
       if (cta && !prefersReduced) {
         if ('IntersectionObserver' in window) {
@@ -976,17 +1088,21 @@
         }
       }
 
-      // Stagger reveals with reduced delays
+      // Reduced and faster stagger: apply small delays to data-animate nodes
       (function applyStagger() {
         const nodes = Array.from(document.querySelectorAll('[data-animate]'));
         nodes.forEach((n, i) => {
-          const delay = Math.min(320, i * 30);
+          // reduce the delay multiplier (was 70); now 40ms; cap to small number
+          const delay = Math.min(360, i * 40);
           n.style.transitionDelay = (delay) + 'ms';
+          n.style.webkitTransitionDelay = (delay) + 'ms';
+          // For CSS keyframe animations, also set animationDelay so they respect the stagger
           n.style.animationDelay = (delay) + 'ms';
+          n.style.webkitAnimationDelay = (delay) + 'ms';
         });
       })();
 
-      // Typewriter
+      // Typewriter for center heading: reveal text char-by-char when in-view
       (function typewriter() {
         const h = document.getElementById('centerHeading');
         if (!h) return;
@@ -996,15 +1112,17 @@
         function startTyping() {
           if (prefersReduced) { h.textContent = full; h.style.borderRight = 'none'; return; }
           let i = 0;
-          const speed = 20;
+          const speed = 24; // ms per char (faster)
           const timer = setInterval(() => {
             h.textContent = full.slice(0, ++i);
             if (i >= full.length) {
               clearInterval(timer);
-              setTimeout(()=>{ h.style.borderRight = 'none'; }, 600);
+              // keep caret for a short time then remove border
+              setTimeout(()=>{ h.style.borderRight = 'none'; }, 800);
             }
           }, speed);
         }
+        // Use IntersectionObserver to trigger when visible (or immediate if no IO)
         if (!prefersReduced && 'IntersectionObserver' in window) {
           const ob = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1020,15 +1138,18 @@
         }
       })();
 
-      // Make sure some persistent elements are visible immediately for keyboard/sr users
+      // For accessibility: immediately mark some persistent items visible to avoid flicker for keyboard/screen reader users
       document.addEventListener('DOMContentLoaded', function(){
         const persist = document.querySelectorAll('.logo, .nav-container, .footer');
         persist.forEach(el => el.classList.add('in-view'));
       });
     })();
 
-    /* Accessibility small tweaks */
+    /* ===========================
+       Accessibility small tweaks: allow keyboard users to see hover effects
+       =========================== */
     (function() {
+      // Add focus-visible class fallback for browsers that don't support :focus-visible
       const hasFocusVisible = CSS.supports && CSS.supports(':focus-visible');
       if (!hasFocusVisible) {
         document.addEventListener('keydown', function(e){
@@ -1041,6 +1162,8 @@
         });
       }
     })();
+
+    /* end of script */
   </script>
 </body>
 </html>
