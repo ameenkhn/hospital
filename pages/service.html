@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cardiology Services — Hospital</title>
+  <title>Services — Exly Hospitals</title> 
+  <link rel="icon" type="image/png" href="../assets/Gemini_Generated_Image_ogm6gzogm6gzogm6.png">
   <meta name="description" content="Comprehensive Cardiology services — procedures, diagnostics, research and request a callback." />
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
@@ -65,11 +66,10 @@
     }
     .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 18px; gap: 16px; width:100%; }
     .nav-left { display:flex; gap:12px; align-items:center; min-width:0; }
-    .nav-item { color: #0a5f71; font-weight:600; font-size:13px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; }
-    .logo { display:flex; align-items:center; gap:12px; font-weight:700; color:var(--primary); text-decoration:none; }
-    .logo-text { color: #0D9DB5; font-size:22px; font-weight:800; line-height:1; }
-    .logo-subtext { color: #0D9DB5; font-size:10px; letter-spacing:2px; }
-    .logo { position: absolute; left: 50%; transform: translateX(-50%); pointer-events: none; }
+    .nav-item { color: #0a5f71; font-weight:600; font-size:13px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; margin-right: 50px;margin-left: 50px; }
+    .logo { text-align:center; display:flex; flex-direction:column; align-items:center; gap:2px; flex: 0 0 auto;}
+    .logo-text { color: #0D9DB5; font-size:28px; font-weight:700; line-height:1; }
+    .logo-subtext { color: #0D9DB5; font-size:11px; letter-spacing:2px; }
     .nav-container .logo { pointer-events: auto; }
     .nav { display:flex; gap:14px; align-items:center; color:var(--muted-text); font-size:14px; }
     .spacer { flex:1; }
@@ -110,6 +110,130 @@
       width: min(1220px, 94%);
       margin: 20px auto 48px;
       padding-bottom:36px;
+    }
+
+        /* Callback Card (kept for reuse if needed) */
+  .callback-section {
+    background: linear-gradient(135deg, #0D9DB5 0%, #0A7A8F 100%);
+    border-radius: 24px;
+    padding: 50px;
+    max-width: 1100px;
+    margin: -100px auto 80px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(6px);
+    flex-wrap:wrap;
+  }
+
+  /* Left Text Section */
+  .callback-title {
+    color: #0D9DB5;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    opacity: 0.9;
+  }
+
+  .callback-heading {
+    color: #0D9DB5;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Form */
+  .callback-form {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .form-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    color: #0D9DB5;
+    font-size: 15px;
+    transition: 0.3s ease;
+    min-width: 120px;
+    backdrop-filter: blur(4px);
+  }
+
+  .form-input::placeholder {
+    color: #0D9DB5;;
+  }
+
+  .form-input {
+    border-color: #0D9DB5;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    outline: #0D9DB5;
+  }
+
+  .otp-btn {
+    background:#FFB800; color:#0a5f71; padding:10px 16px; border:none; border-radius:8px; font-weight:700; cursor:pointer;
+    white-space:nowrap;
+  }
+  .link-text { color:#FFB800; text-decoration:underline; font-size:13px; cursor:pointer; display:inline-block; margin-top:10px; }
+  .submit-btn {
+    background:#FFB800; color:#0a5f71; padding:12px 28px; border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:15px; margin-top:10px;
+  }
+  
+      /* --- Callback modal styles --- */
+    .callback-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.6);
+      z-index: 10050;
+      padding: 20px;
+    }
+    .callback-modal[aria-hidden="false"] {
+      display: flex;
+    }
+    .callback-modal-inner {
+      width: 100%;
+      max-width: 920px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, white 0%, white 100%);
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      color: #0D9DB5;
+      position: relative;
+    }
+    .callback-modal-close {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      background: rgba(255,255,255,0.06);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    @media (max-width:760px) {
+      .callback-modal-inner { padding: 18px; border-radius: 12px; }
+      .callback-heading { font-size: 26px; }
     }
 
     /* ===========================
@@ -246,24 +370,46 @@
     }
 
     /* Research rows */
-    .research{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    .research li{ padding:12px 0; border-bottom:1px solid rgba(7,60,60,0.03); color:var(--muted-text); list-style:none; margin:0; }
+    .research {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
 
-    /* Callback form */
-    .callback{
-      background: linear-gradient(0deg, rgba(6,107,107,0.95), rgba(6,107,107,0.95));
-      color:#fff;padding:22px;border-radius:18px;
-      display:flex;gap:18px;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .callback .form{ display:flex;gap:12px;flex-wrap:wrap;align-items:center; }
-    .callback input{
-      padding:12px 14px;border-radius:10px;border:none;min-width:160px;
-    }
-    .callback .send{background:var(--accent);color:#06323a;padding:10px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+.research li {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(7, 60, 60, 0.08);
+  color: var(--muted-text);
+  list-style: none;
+  margin: 0;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+}
 
-    footer{padding:40px 0;color:var(--muted-text);font-size:14px;text-align:center}
+.research li:hover {
+  background: rgba(7, 60, 60, 0.02);
+  border-bottom-color: rgba(7, 60, 60, 0.15);
+  transform: translateX(4px);
+  color: var(--primary);
+}
 
+.research li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .research {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .research li {
+    padding: 12px 16px;
+  }
+}
     /* ===========================
        Responsive
        =========================== */
@@ -283,7 +429,6 @@
       .carousel .card{min-width:220px}
       .carousel-nav{ display:none }
       .hero-illustration{ text-align:center; width:100%; margin-top:8px; }
-      .callback{ flex-direction:column; align-items:stretch }
     }
 
     /* Accessibility focus */
@@ -317,6 +462,19 @@
     .notification-icon { background:#FF9800; color:white; }
     .emergency-num { font-weight:700; color:#333; font-size:13px; }
     .lang-select { border:1px solid #ddd; padding:5px 15px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; }
+
+    /* NEW: right-side nav group for Medical Services + CTA */
+    .nav-right {
+      display:flex;
+      align-items:center;
+      gap:18px;
+      min-width:0;
+    }
+
+    footer {
+    position: relative;
+    bottom: 130px; /* Adjust this value to move it up by 20 pixels */
+    }
 
     /* Mobile nav toggle */
     .nav-toggle { display:none; width:44px; height:44px; border-radius:8px; align-items:center; justify-content:center; cursor:pointer; border:1px solid transparent; background:transparent; }
@@ -372,6 +530,8 @@
     .footer-legal a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:13px; transition:color 0.2s; }
     .footer-legal a:hover { color:#FFD700; }
 
+    .app-section { background: rgba(255,255,255,0.04); border-radius:12px; padding:16px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+
     /* Mobile adjustments for header/footer from home page */
     @media (max-width:900px) {
       .desktop-only { display:none !important; }
@@ -385,6 +545,147 @@
       .logo-subtext{ font-size:9px;}
     }
 
+    /* ------------------------------------------------------------------
+       Minimal additional styles required for "What's new at Exly" cards
+       (these are the same/similar utility classes used in the home page)
+       ------------------------------------------------------------------ */
+
+    /*
+      IMPORTANT: make this a horizontal flex track so JS + buttons control scrolling
+      Works on desktop and mobile. Cards have min-width so multiple visible on large screens.
+    */
+    .cards-container {
+      display:flex;
+      gap:16px;
+      align-items: start;
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding-bottom:6px;
+      padding-top:6px;
+    }
+    .cards-container::-webkit-scrollbar { height: 10px; }
+    .cards-container::-webkit-scrollbar-thumb { background: rgba(10,100,100,0.06); border-radius: 16px; }
+
+    /* make each news card a fixed-size item so scroll amount is consistent */
+    .cards-container .card {
+      min-width: 280px;
+      max-width: 360px;
+      flex: 0 0 auto;
+      background: white;
+      border-radius:12px;
+      overflow:hidden;
+      border:1px solid rgba(6,60,60,0.06);
+      box-shadow: 0 10px 30px rgba(7,41,43,0.04);
+    }
+
+    .card-image {
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:0;
+      overflow:hidden;
+      background: linear-gradient(135deg,#1a5f7a 0%,#159eb5 100%);
+      display:block;
+    }
+    .card-image img { width:100%; height:100%; object-fit:cover; display:block; }
+    .card-content { padding:14px; background:transparent; }
+    .card-label { color:#0D9DB5; font-size:11px; font-weight:700; margin-bottom:6px; text-transform:uppercase; display:block; }
+    .card-title { color:var(--primary); font-size:16px; font-weight:700; line-height:1.3; margin:0; }
+
+    .explore-btn {
+      background:#FFB800; color:#0a5f71; padding:10px 18px; border-radius:50px; font-weight:700; border:none; cursor:pointer; font-size:13px;
+    }
+
+    .carousel-arrow {
+      display:inline-flex; align-items:center; justify-content:center; width:40px;height:40px;border-radius:50%;border:2px solid #0D9DB5;background:white;color:#0D9DB5;font-size:18px; cursor:pointer;
+    }
+
+    /* NEW: bottom fixed button row for horizontal scroll controls within what's new section */
+    .news-controls {
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      margin-top:18px;
+    }
+    .news-btn {
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      border:2px solid #0D9DB5;
+      background: white;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      box-shadow: 0 8px 22px rgba(6,20,20,0.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+      font-size:18px;
+      color: #0D9DB5;
+    }
+    .news-btn:active{ transform: translateY(1px); box-shadow: 0 6px 16px rgba(6,20,20,0.06); }
+    .news-btn[aria-disabled="true"] { opacity:0.35; cursor:not-allowed; transform:none; box-shadow:none; }
+
+    @media (max-width:520px) {
+      .cards-container .card { min-width: 84%; max-width: 92%; }
+      .news-controls { position: relative; }
+    }
+
+    /* ------------------------------------------------------------------
+       ADDITIONAL CSS: Horizontal scroll track for "Types Of Diseases" section
+       ------------------------------------------------------------------ */
+    .diseases-wrapper { overflow:hidden; }
+    .diseases-track {
+      display:flex;
+      gap:18px;
+      align-items: flex-start;
+      padding: 8px 6px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding-bottom: 12px;
+    }
+    .diseases-track::-webkit-scrollbar { height:10px; }
+    .diseases-track::-webkit-scrollbar-thumb { background: rgba(10,100,100,0.06); border-radius:16px; }
+    .diseases-track .dcard {
+      min-width: 280px;
+      max-width: 360px;
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      background: white;
+      border-radius:12px;
+      padding:14px;
+      border:1px solid rgba(6,60,60,0.06);
+      box-shadow:0 10px 30px rgba(7,41,43,0.04);
+      color: var(--text);
+    }
+    .diseases-controls {
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      margin-top:16px;
+    }
+    .disease-btn {
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:2px solid #0D9DB5;
+      background:white;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      box-shadow: 0 8px 22px rgba(6,20,20,0.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+      font-size:18px;
+      color:#0D9DB5;
+    }
+    .disease-btn[aria-disabled="true"] { opacity:0.35; cursor:not-allowed; transform:none; box-shadow:none; }
+
+    @media (max-width: 900px) {
+      .diseases-track .dcard { min-width: 84%; max-width: 92%; }
+    }
   </style>
 </head>
 <body>
@@ -401,8 +702,10 @@
           </svg>
         </button>
 
-        <div class="nav-item desktop-only reveal-fade" data-animate>DISCOVER Exly ▾</div>
-        <div class="nav-item desktop-only reveal-fade" data-animate>FIND HOSPITAL ▾</div>
+        <div class="nav-item desktop-only reveal-fade" data-animate>
+        <a href="/pages/index.html">HOME</a></div>
+        <div class="nav-item desktop-only reveal-fade" data-animate>
+        <a href="https://www.google.com/maps/search/406+Second+Floor+Udyog+Vihar+Phase+3+Gurugram+Haryana+122016/@28.5049834,77.0776351,16z?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D">FIND HOSPITAL</a></div>
       </div>
 
       <div class="logo" aria-hidden="false">
@@ -410,9 +713,13 @@
         <div class="logo-subtext reveal-fade" data-animate>HOSPITALS</div>
       </div>
 
-      <div class="flex" style="align-items:center;">
-        <div class="nav-item desktop-only reveal-fade" data-animate>MEDICAL SERVICES ▾</div>
-        <div class="nav-item desktop-only reveal-fade" data-animate>HEALTH LIBRARY ▾</div>
+      <!-- RIGHT SIDE: Medical Services + CTA, now using nav-right -->
+      <div class="nav-right">
+        <div class="nav-item desktop-only reveal-fade" data-animate>
+        <a href="/pages/service.html">SERVICES</a></div>
+        <button id="requestCallbackBtn" class="explore-btn reveal-up" data-animate style="margin-left: auto;">REQUEST A CALLBACK →</button>
+        <div class="hero-actions" role="group" aria-label="Hero actions">
+        </div>
       </div>
 
     </div>
@@ -434,13 +741,8 @@
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-left fade-in" aria-hidden="false">
-        <h1 id="hero-title">Best Cardiology Hospital in Kolkata</h1>
-        <p class="lead">Apollo Heart Institute at Apollo Multispeciality Hospitals, Kolkata is renowned for delivering advanced Cardio care tailored to individual patient needs, achieving exceptional outcomes with compassion and precision.</p>
-        <div class="hero-actions" role="group" aria-label="Hero actions">
-          <button class="cta-btn" aria-label="Book Appointment Hero">Book Appointment ➜</button>
-          <button class="ghost" aria-label="Request Callback Hero">Request Callback ➜</button>
-        </div>
-
+        <h1 id="hero-title">Where Care Meets Excellence</h1>
+        <p class="lead">Exly Heart Institute at Exly Multispeciality Hospitals, Kolkata is renowned for delivering advanced Cardio care tailored to individual patient needs, achieving exceptional outcomes with compassion and precision.</p>
         <div class="pill-row" role="tablist" aria-label="Quick links">
           <button class="pill" role="tab" tabindex="0">Sub Specialities</button>
           <button class="pill" role="tab" tabindex="0">Cutting-edge Technology</button>
@@ -448,12 +750,11 @@
           <button class="pill" role="tab" tabindex="0">Research</button>
         </div>
       </div>
-      <div class="hero-illustration" aria-hidden="true">
-        <svg width="280" height="220" viewBox="0 0 280 220" aria-hidden="true" role="img" focusable="false">
-          <rect rx="18" width="280" height="220" fill="#eaf6f6"></rect>
-          <circle cx="80" cy="80" r="46" fill="#fff" stroke="#0a6b6b" opacity="0.08"></circle>
-          <text x="40" y="140" fill="#0a6b6b" font-size="20" font-family="Inter">Heart Care</text>
-        </svg>
+        <div class="hero-illustration" aria-hidden="true" style="position: relative; width: 380px; height: 220px;">
+          <img src="../assets/How-institute-of-cardiac-science-work-you.jpg" alt="" width="280" height="220" style="border-radius: 18px; object-fit: cover;">
+          <div style="position: absolute; bottom: 20px; left: 20px;">
+          <span style="color: #0a6b6b; font-size: 20px; font-family: Inter; font-weight: 600; text-shadow: 0 2px 4px rgba(255,255,255,0.9);"></span>
+          </div>
       </div>
     </section>
 
@@ -465,7 +766,7 @@
           <strong>We handled over 5666 inpatient (IPD) cases.</strong>
           <div class="muted-small" style="margin-top:8px">Comprehensive inpatient care including surgery, rehabilitation and follow-up.</div>
         </div>
-        <div style="flex:1;min-width:220px;padding:18px;background:#fff;border-radius:10px; box-shadow:0 8px 24px rgba(6,60,60,0.03)">
+        <div style="flex:1;min-width:220px;padding:18px;background:#fff;border-radius:10px;border-left:4px solid var(--primary); box-shadow:0 8px 24px rgba(6,60,60,0.03)">
           <strong>Our success rate is an impressive 98%, achieved through expertise and precision.</strong>
           <div class="muted-small" style="margin-top:8px">Outcome-driven protocols and multidisciplinary teams.</div>
         </div>
@@ -501,7 +802,6 @@
             <a href="#" aria-label="Learn more about Valve Edge to Edge Repair">Learn More</a>
           </article>
         </div>
-
         <div class="carousel-nav" aria-hidden="true">
           <button class="circle-btn" id="prevProc" aria-label="Previous procedures">‹</button>
           <button class="circle-btn" id="nextProc" aria-label="Next procedures">›</button>
@@ -509,39 +809,67 @@
       </div>
     </section>
 
-    <!-- TYPES OF DISEASES (grid) -->
+    <!-- TYPES OF DISEASES (HORIZONTAL SCROLL TRACK) -->
     <section aria-labelledby="diseases">
       <h2 id="diseases" class="section-title">Types Of Diseases Treated Under Cardiology</h2>
-      <div class="grid" role="list">
-        <article class="dcard" role="listitem">
-          <h3>Ischemic Heart Disease (IHD)</h3>
-          <p>IHD is characterized by reduced blood flow to the heart, often causing chest pain or heart attacks. Our approach prevents progression.</p>
-          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about IHD">Learn More</a>
-        </article>
 
-        <article class="dcard highlight" role="listitem">
-          <h3>Valvular Heart Disease</h3>
-          <p>Diseased heart valves impede blood flow. Surgical & medical interventions help patients regain function.</p>
-          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Valvular Heart Disease">Learn More</a>
-        </article>
+      <!-- Horizontal scroll wrapper for diseases -->
+      <div class="diseases-wrapper" style="margin-bottom:6px;">
+        <div class="diseases-track" id="diseasesTrack" role="list" tabindex="0" aria-label="Cardiology diseases scroll list">
+          <!-- Ischemic Heart Disease (IHD) -->
+          <article class="dcard" role="listitem" aria-label="Ischemic Heart Disease (IHD)">
+            <img src="../assets/golden-hour-in-stroke-care.webp" alt="Illustration of ischemic heart disease showing blocked coronary artery" style="width:100%;height:auto;border-radius:8px;margin-bottom:12px;">
+            <h3>Ischemic Heart Disease (IHD)</h3>
+            <p>IHD is characterized by reduced blood flow to the heart, often causing chest pain or heart attacks. Our approach prevents progression.</p>
+            <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about IHD">Learn More</a>
+          </article>
 
-        <article class="dcard" role="listitem">
-          <h3>Cardiac Rhythm Disorders</h3>
-          <p>Arrhythmias such as AF disturb normal heartbeats. Treatments restore rhythm and reduce stroke risk.</p>
-          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Cardiac Rhythm Disorders">Learn More</a>
-        </article>
+          <!-- Valvular Heart Disease -->
+          <article class="dcard highlight" role="listitem" aria-label="Valvular Heart Disease">
+            <img src="../assets/4.jpg" alt="Medical illustration of damaged heart valves affecting blood flow" style="width:100%;height:auto;border-radius:8px;margin-bottom:12px;">
+            <h3>Valvular Heart Disease</h3>
+            <p>Diseased heart valves impede blood flow. Surgical & medical interventions help patients regain function.</p>
+            <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Valvular Heart Disease">Learn More</a>
+          </article>
 
-        <article class="dcard" role="listitem">
-          <h3>Aneurysm Disorders</h3>
-          <p>Artery wall weakness can threaten rupture. Precise treatments prevent complications and stabilize arteries.</p>
-          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Aneurysm Disorders">Learn More</a>
-        </article>
+          <!-- Cardiac Rhythm Disorders -->
+          <article class="dcard" role="listitem" aria-label="Cardiac Rhythm Disorders">
+            <img src="../assets/image.webp" alt="ECG diagram showing atrial fibrillation and irregular heartbeat patterns" style="width:100%;height:auto;border-radius:8px;margin-bottom:12px;">
+            <h3>Cardiac Rhythm Disorders</h3>
+            <p>Arrhythmias such as AF disturb normal heartbeats. Treatments restore rhythm and reduce stroke risk.</p>
+            <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Cardiac Rhythm Disorders">Learn More</a>
+          </article>
 
-        <article class="dcard" role="listitem" style="grid-column: span 2;">
-          <h3>Peripheral Vascular Diseases</h3>
-          <p>Diseases that cost blood flow to limbs — our treatments aim to restore circulation and improve lifestyle.</p>
-          <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Peripheral Vascular Diseases">Learn More</a>
-        </article>
+          <!-- Aneurysm Disorders -->
+          <article class="dcard" role="listitem" aria-label="Aneurysm Disorders">
+            <img src="../assets/neuroscience.webp" alt="Illustration of arterial aneurysm showing weakened blood vessel wall" style="width:100%;height:auto;border-radius:8px;margin-bottom:12px;">
+            <h3>Aneurysm Disorders</h3>
+            <p>Artery wall weakness can threaten rupture. Precise treatments prevent complications and stabilize arteries.</p>
+            <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Aneurysm Disorders">Learn More</a>
+          </article>
+
+          <!-- Peripheral Vascular Diseases -->
+          <article class="dcard" role="listitem" aria-label="Peripheral Vascular Diseases">
+            <img src="../assets/5.jpg" alt="Medical diagram showing blocked arteries in legs causing reduced blood flow" style="width:100%;height:auto;border-radius:8px;margin-bottom:12px;">
+            <h3>Peripheral Vascular Diseases</h3>
+            <p>Diseases that cost blood flow to limbs — our treatments aim to restore circulation and improve lifestyle.</p>
+            <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Peripheral Vascular Diseases">Learn More</a>
+          </article>
+
+          <!-- Aortic Atherosclerosis -->
+          <article class="dcard" role="listitem" aria-label="Aortic Atherosclerosis">
+            <img src="../assets/diagrams-human-blood-vessels-artery.webp" alt="Medical diagram showing blocked arteries in legs causing reduced blood flow" style="width:100%;height:auto;border-radius:8px; margin-bottom:12px;">
+            <h3>Aortic Atherosclerosis</h3>
+            <p>It is the buildup of plaque (fat, cholesterol, calcium, and other substances) on the inner walls of the aorta, the body's largest artery.</p>
+            <a href="#" style="display:inline-block;margin-top:10px;font-weight:700;color:var(--primary)" aria-label="Learn more about Aortic Atherosclerosis">Learn More</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- controls for the diseases horizontal track -->
+      <div class="diseases-controls" role="group" aria-label="Diseases carousel controls">
+        <button id="diseasesPrev" class="disease-btn" aria-label="Previous diseases" title="Previous diseases" aria-disabled="true">←</button>
+        <button id="diseasesNext" class="disease-btn" aria-label="Next diseases" title="Next diseases" aria-disabled="true">→</button>
       </div>
     </section>
 
@@ -600,32 +928,96 @@
       </div>
     </section>
 
-    <!-- REQUEST A CALLBACK -->
-    <section>
-      <div class="callback" role="region" aria-labelledby="callbackTitle">
-        <div style="max-width:66%">
-          <h3 id="callbackTitle" style="margin:0 0 6px 0;font-size:22px">Could not find what you are looking for?</h3>
-          <p style="margin:0 0 10px;color:rgba(255,255,255,0.95)">Request a Callback — we'll connect you with a specialist to discuss next steps.</p>
-          <div class="form" role="form" aria-label="Request callback form">
-            <input type="text" id="name" placeholder="Name" aria-label="Name">
-            <input type="tel" id="phone" placeholder="Mobile Number" aria-label="Mobile number">
-            <button class="send" id="sendOTP" aria-controls="otpMsg">Send OTP</button>
-            <input type="text" id="otp" placeholder="Enter OTP" aria-label="Enter OTP" style="min-width:120px">
-            <button class="send" id="submitCB">Request</button>
+  <!-- Our Services -->
+  <section class="section" aria-labelledby="whats-new">
+    <div class="container">
+      <div class="section-header" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
+            <h2 id="whats-new" class="section-title center" style="margin-bottom:10px;">Our Services</h2>
+      </div>
+
+      <!-- Horizontal scroll track -->
+      <div id="newsTrackWrapper" style="overflow:hidden;">
+        <div class="cards-container" id="newsCards" aria-live="polite" role="list" tabindex="0">
+          <div class="card slide-left" role="article" aria-label="News 1">
+            <div class="card-image" role="img" aria-label="News image 1">
+              <img src="../assets/image.webp" alt="Exly & University of Leicester Digital Health Centre" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly &amp; University of Leicester launch Digital Health Centre in India</h3>
+              <button class="explore-btn" aria-label="Explore Digital Health Centre" style="margin-top: 20px">Check Out ➜</button>
+            </div>
           </div>
-          <div id="otpMsg" style="margin-top:12px;color:rgba(255,255,255,0.95);font-size:13px"></div>
-        </div>
-        <div style="width:200px;text-align:center">
-          <svg width="140" height="140" viewBox="0 0 200 200" aria-hidden="true" role="img" focusable="false">
-            <circle cx="100" cy="100" r="98" fill="#fff" opacity="0.06"></circle>
-            <g fill="#fff">
-              <circle cx="100" cy="72" r="26" />
-              <rect x="56" y="110" width="88" height="46" rx="10" />
-            </g>
-          </svg>
+
+          <div class="card slide-left" role="article" aria-label="News 2">
+            <div class="card-image" role="img" aria-label="News image 2">
+              <img src="../assets/research-platform-5.webp" alt="Exly Neuro Conclave 2024" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly Neuro Conclave 2024</h3>
+              <button class="explore-btn" aria-label="Explore Neuro Conclave 2024" style="margin-top: 20px">Check Out ➜</button>
+            </div>
+          </div>
+
+          <div class="card slide-left" role="article" aria-label="News 3">
+            <div class="card-image" role="img" aria-label="News image 3">
+              <img src="../assets/3.jpg" alt="500 robotic cardiac procedures" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly Hospitals completes 500 robotic cardiac procedures.</h3>
+              <button class="explore-btn" aria-label="Explore Neuro Conclave 2024" style="margin-top: 20px">Check Out ➜</button>
+              
+            </div>
+          </div>
+
+          <div class="card slide-left" role="article" aria-label="News 4">
+            <div class="card-image" role="img" aria-label="News image 4">
+              <img src="../assets/3.jpg" alt="500 robotic cardiac procedures" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly Hospitals completes 500 robotic cardiac procedures.</h3>
+              <button class="explore-btn" aria-label="Explore Neuro Conclave 2024" style="margin-top: 20px">Check Out ➜</button>
+
+            </div>
+          </div>
+
+          <div class="card slide-left" role="article" aria-label="News 5">
+            <div class="card-image" role="img" aria-label="News image 5">
+              <img src="../assets/3.jpg" alt="500 robotic cardiac procedures" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly Hospitals completes 500 robotic cardiac procedures.</h3>
+              <button class="explore-btn" aria-label="Explore Neuro Conclave 2024" style="margin-top: 20px">Check Out ➜</button>
+            </div>
+          </div>
+          
+          <div class="card slide-left" role="article" aria-label="News 6">
+            <div class="card-image" role="img" aria-label="News image 6">
+              <img src="../assets/3.jpg" alt="500 robotic cardiac procedures" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly Hospitals completes 500 robotic cardiac procedures.</h3>
+              <button class="explore-btn" aria-label="Explore Neuro Conclave 2024" style="margin-top: 20px">Check Out ➜</button>
+            </div>
+          </div>
+
+          <div class="card slide-left" role="article" aria-label="News 7">
+            <div class="card-image" role="img" aria-label="News image 7">
+              <img src="../assets/golden-hour-in-stroke-care.webp" alt="Stroke care pledge" />
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Exly Hospitals pledges 4.5-hour stroke care with 24-hour treatment window.</h3>
+              <button class="explore-btn" aria-label="Explore Neuro Conclave 2024" style="margin-top: 20px">Check Out ➜</button>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+      <!-- clickable buttons for horizontal scroll -->
+      <div class="news-controls" role="group" aria-label="News carousel controls">
+        <button id="newsPrev" class="news-btn" aria-label="Previous news" title="Previous news" aria-disabled="true">←</button>
+        <button id="newsNext" class="news-btn" aria-label="Next news" title="Next news" aria-disabled="true">→</button>
+      </div>
+    </div>
+  </section>
   </main>
 
   <!-- FOOTER: replaced with footer markup from the home page to match exactly -->
@@ -702,7 +1094,6 @@
               <a href="tel:1066" class="footer-contact-value">1066</a>
             </div>
           </div>
-
           <div class="footer-contact-item">
             <div class="contact-icon">✉️</div>
             <div>
@@ -724,6 +1115,29 @@
       </div>
     </div>
   </footer>
+
+  <!-- Callback Modal (replaces bottom section, triggered from #requestCallbackBtn) -->
+  <div id="callbackModal" class="callback-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Request a callback">
+    <div class="callback-modal-inner">
+      <button class="callback-modal-close" aria-label="Close callback form" id="callbackCloseBtn">✕</button>
+      <div class="callback-form" style="color:inherit;">
+        <div class="callback-title"><strong>COULD NOT FIND WHAT YOU ARE LOOKING FOR?</strong></div>
+        <h2 class="callback-heading">Request a Callback</h2>
+        <div class="form-row">
+          <input type="text" class="form-input" placeholder="Name" id="cbName" aria-label="Name" />
+          <input type="tel" class="form-input" placeholder="Mobile Number" id="cbMobile" aria-label="Mobile Number" />
+          <button class="otp-btn" type="button" id="cbSendOtp">Send OTP</button>
+          <input type="text" class="form-input" placeholder="Enter OTP" id="cbOtp" aria-label="OTP" />
+        </div>
+        <div>
+          <span class="link-text" role="button" tabindex="0" id="cbChangeNumber">Change Number</span>
+          <span style="margin: 0 12px; color: white;">|</span>
+          <span class="link-text" role="button" tabindex="0" id="cbResendOtp">Resend OTP</span>
+        </div>
+        <button class="submit-btn" type="button" id="cbSubmit">Submit</button>
+      </div>
+    </div>
+  </div>
 
   <!-- SCRIPTS: Tab switching, FAQ toggles, mobile menu, animations, and modal video -->
   <script>
@@ -795,7 +1209,6 @@
           const card = carousel.querySelector('.card');
           if(!card) return;
           const gap = 20; // matches CSS gap
-          const style = window.getComputedStyle(card);
           const width = card.getBoundingClientRect().width;
           const offset = Math.round(width + gap);
           carousel.scrollBy({left: offset * direction, behavior:'smooth'});
@@ -858,6 +1271,274 @@
           } else {
             otpMsg.textContent = 'Incorrect OTP. Please try again.';
           }
+        });
+      }
+    })();
+
+    
+    /* ===========================
+       What's New horizontal scroll controls
+       - reliable across viewports
+       - computes scroll amount from first card width + gap
+       - updates aria-disabled attributes on buttons
+       =========================== */
+    (function(){
+      const track = document.getElementById('newsCards');
+      const prevBtn = document.getElementById('newsPrev');
+      const nextBtn = document.getElementById('newsNext');
+
+      if (!track || !prevBtn || !nextBtn) return;
+
+      // Helper: get numeric gap between items (fallback 16)
+      function getGap() {
+        // Some browsers don't expose gap on flex container; try computed style
+        const cs = window.getComputedStyle(track);
+        const gapVal = cs.getPropertyValue('gap') || cs.getPropertyValue('--gap') || '';
+        const parsed = parseFloat(gapVal);
+        if (!isNaN(parsed) && parsed > 0) return parsed;
+        return 16;
+      }
+
+      function scrollAmount() {
+        const first = track.querySelector('.card');
+        if (!first) return Math.round(window.innerWidth * 0.6);
+        const gap = getGap();
+        const w = Math.round(first.getBoundingClientRect().width);
+        return w + gap;
+      }
+
+      function updateButtons() {
+        // if no overflow, disable both
+        const canScroll = track.scrollWidth > track.clientWidth + 1;
+        if (!canScroll) {
+          prevBtn.setAttribute('aria-disabled', 'true');
+          nextBtn.setAttribute('aria-disabled', 'true');
+          return;
+        }
+        const atStart = track.scrollLeft <= 4;
+        const atEnd = Math.abs(track.scrollLeft + track.clientWidth - track.scrollWidth) <= 4;
+        prevBtn.setAttribute('aria-disabled', atStart ? 'true' : 'false');
+        nextBtn.setAttribute('aria-disabled', atEnd ? 'true' : 'false');
+      }
+
+      function smoothScrollBy(px) {
+        // ensure overflow auto to allow scroll on all browsers
+        const prevOverflow = track.style.overflowX;
+        track.style.overflowX = 'auto';
+        track.scrollBy({ left: px, behavior: 'smooth' });
+        // after scroll completes, restore overflow style and update buttons
+        setTimeout(() => {
+          track.style.overflowX = prevOverflow || '';
+          updateButtons();
+        }, 520); // slightly longer than CSS smooth duration
+      }
+
+      prevBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if (this.getAttribute('aria-disabled') === 'true') return;
+        smoothScrollBy(-scrollAmount());
+      });
+
+      nextBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if (this.getAttribute('aria-disabled') === 'true') return;
+        smoothScrollBy(scrollAmount());
+      });
+
+      // keyboard support for buttons
+      prevBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+      nextBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+
+      // allow arrow key control when focus inside track
+      track.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+      });
+
+      // update state on user scroll and resize
+      track.addEventListener('scroll', function(){
+        // throttle-ish: update quickly but not on every tiny event
+        window.requestAnimationFrame(updateButtons);
+      });
+      window.addEventListener('resize', function(){ setTimeout(updateButtons, 120); });
+
+      // initialize
+      setTimeout(updateButtons, 120);
+    })();
+
+    /* -----------------------------
+       Diseases horizontal scroll controls
+       - similar pattern to "What's New"
+       ----------------------------- */
+    (function(){
+      const track = document.getElementById('diseasesTrack');
+      const prevBtn = document.getElementById('diseasesPrev');
+      const nextBtn = document.getElementById('diseasesNext');
+      if (!track || !prevBtn || !nextBtn) return;
+
+      function getGap() {
+        const cs = window.getComputedStyle(track);
+        const gapVal = cs.getPropertyValue('gap') || '';
+        const parsed = parseFloat(gapVal);
+        if (!isNaN(parsed) && parsed > 0) return parsed;
+        return 18;
+      }
+
+      function scrollAmount() {
+        const first = track.querySelector('.dcard');
+        if (!first) return Math.round(window.innerWidth * 0.6);
+        const gap = getGap();
+        const w = Math.round(first.getBoundingClientRect().width);
+        return w + gap;
+      }
+
+      function updateButtons() {
+        const canScroll = track.scrollWidth > track.clientWidth + 1;
+        if (!canScroll) {
+          prevBtn.setAttribute('aria-disabled', 'true');
+          nextBtn.setAttribute('aria-disabled', 'true');
+          return;
+        }
+        const atStart = track.scrollLeft <= 4;
+        const atEnd = Math.abs(track.scrollLeft + track.clientWidth - track.scrollWidth) <= 4;
+        prevBtn.setAttribute('aria-disabled', atStart ? 'true' : 'false');
+        nextBtn.setAttribute('aria-disabled', atEnd ? 'true' : 'false');
+      }
+
+      function smoothScrollBy(px) {
+        const prevOverflow = track.style.overflowX;
+        track.style.overflowX = 'auto';
+        track.scrollBy({ left: px, behavior: 'smooth' });
+        setTimeout(() => {
+          track.style.overflowX = prevOverflow || '';
+          updateButtons();
+        }, 520);
+      }
+
+      prevBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if (this.getAttribute('aria-disabled') === 'true') return;
+        smoothScrollBy(-scrollAmount());
+      });
+
+      nextBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if (this.getAttribute('aria-disabled') === 'true') return;
+        smoothScrollBy(scrollAmount());
+      });
+
+      prevBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+      nextBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+
+      track.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+      });
+
+      track.addEventListener('scroll', function(){
+        window.requestAnimationFrame(updateButtons);
+      });
+      window.addEventListener('resize', function(){ setTimeout(updateButtons, 120); });
+
+      // initialize
+      setTimeout(updateButtons, 120);
+    })();
+
+        /* -----------------------------
+       Callback modal logic
+       - Opens when #requestCallbackBtn clicked
+       - Accessible focus management & close handlers
+       ----------------------------- */
+    (function() {
+      const openBtn = document.getElementById('requestCallbackBtn');
+      const modal = document.getElementById('callbackModal');
+      const closeBtn = document.getElementById('callbackCloseBtn');
+      const sendOtpBtn = document.getElementById('cbSendOtp');
+      const resendBtn = document.getElementById('cbResendOtp');
+      const changeNumber = document.getElementById('cbChangeNumber');
+      const submitBtn = document.getElementById('cbSubmit');
+      const firstInput = document.getElementById('cbName');
+
+      function openModal() {
+        if (!modal) return;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        // focus the first input for convenience
+        if (firstInput) firstInput.focus();
+        // remember last focused element to restore on close
+        modal._lastFocus = document.activeElement;
+      }
+
+      function closeModal(e) {
+        if (e) e.stopPropagation();
+        if (!modal) return;
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        // restore focus
+        try {
+          const last = modal._lastFocus;
+          if (last && typeof last.focus === 'function') last.focus();
+          else if (openBtn) openBtn.focus();
+        } catch (err) {}
+      }
+
+      if (openBtn) {
+        openBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openModal();
+        });
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', function(e) {
+        closeModal(e);
+      });
+
+      // Close when clicking overlay outside inner
+      modal && modal.addEventListener('click', function(e) {
+        const inner = modal.querySelector('.callback-modal-inner');
+        if (!inner.contains(e.target)) {
+          closeModal();
+        }
+      });
+
+      // ESC to close
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.getAttribute('aria-hidden') === 'false') {
+          closeModal();
+        }
+      });
+
+      // Placeholder behavior for OTP actions (no backend)
+      if (sendOtpBtn) {
+        sendOtpBtn.addEventListener('click', function() {
+          alert('OTP sent to the provided mobile number (demo).');
+        });
+      }
+      if (resendBtn) {
+        resendBtn.addEventListener('click', function() {
+          alert('OTP resent (demo).');
+        });
+      }
+      if (changeNumber) {
+        changeNumber.addEventListener('click', function() {
+          const mobile = document.getElementById('cbMobile');
+          if (mobile) {
+            mobile.value = '';
+            mobile.focus();
+          }
+        });
+      }
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+          // basic demo validation
+          const name = document.getElementById('cbName').value.trim();
+          const mobile = document.getElementById('cbMobile').value.trim();
+          const otp = document.getElementById('cbOtp').value.trim();
+          if (!name) return alert('Please enter your name.');
+          if (!mobile) return alert('Please enter your mobile number.');
+          // In production replace with real submission (AJAX/fetch)
+          alert('Callback request submitted. Our team will call you shortly (demo).');
+          closeModal();
         });
       }
     })();

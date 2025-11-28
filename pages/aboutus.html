@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — Quality Healthcare</title> 
+  <link rel="icon" type="image/png" href="../assets/Gemini_Generated_Image_ogm6gzogm6gzogm6.png">
+  <meta name="description" content="About Us — mission, vision, leadership, brands and story of our Cardiology Center." />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================================
+       THEME & RESET
+       ========================================================================= */
+    :root{
+      --container: min(1220px, 94%);
+      --bg: #ffffff;
+      --surface: #f6fbfb;
+      --muted: #f3f8f8;
+      --card: #eaf6f6;
+      --primary: #0D9DB5;
+      --primary-700: #052b2d;
+      --accent: #f2c94c;
+      --accent-2: #f08a4b;
+      --muted-text: #6b7d7d;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 12px 30px rgba(6,60,60,0.06);
+      --gap: 20px;
+      --transition: 180ms cubic-bezier(.2,.9,.2,1);
+      --max-hero-img-height: 420px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:linear-gradient(180deg,var(--surface) 0%, #fff 36%);
+      color:var(--primary);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.5;
+      font-size:16px;
+      -webkit-font-smoothing:antialiased;
+    }
+    img,svg{display:block;max-width:100%;height:auto}
+    a{color:var(--primary);text-decoration:none}
+    :focus{outline: 3px solid rgba(6,107,107,0.12); outline-offset:4px}
+    p, .muted, .lead, li { text-align: justify; }
+
+    /* =========================================================================
+       ANIMATIONS: (keeps existing animations; respects reduced-motion)
+       ========================================================================= */
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes slideInFromTop { from { opacity:0; transform: translateY(-16px); } to { opacity:1; transform:none; } }
+      @keyframes logoBounce { 0%{transform:translateY(-6px)}40%{transform:translateY(0)}60%{transform:translateY(-4px)}100%{transform:none} }
+      @keyframes heroZoomSkew { 0%{opacity:0; transform: scale(0.98) skewY(0.3deg);} 100%{opacity:1; transform:scale(1.02) skewY(0deg);} }
+      @keyframes flipInX { 0%{opacity:0; transform: perspective(600px) rotateX(18deg) translateY(12px);} 100%{opacity:1; transform:none;} }
+      @keyframes rotateIn { 0%{opacity:0; transform: rotate(-8deg) translateY(12px) scale(0.98);} 100%{opacity:1; transform:none;} }
+      @keyframes slideInLeft { 0%{opacity:0; transform: translateX(-14px);} 100%{opacity:1; transform:none;} }
+      @keyframes slideInRight { 0%{opacity:0; transform: translateX(14px);} 100%{opacity:1; transform:none;} }
+      @keyframes brandGlide { 0%{opacity:0; transform: translateY(16px);} 100%{opacity:1; transform:none;} }
+      @keyframes footerRise { 0%{opacity:0; transform: translateY(18px);} 100%{opacity:1; transform:none;} }
+      @keyframes subtleFloat { 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+      @keyframes typingCaret { 50% { border-right-color: transparent; } }
+    }
+
+    /* Base reveal: start hidden */
+    .reveal, [data-animate] { opacity:0; transform: translateY(8px); transition: opacity var(--transition), transform var(--transition); will-change: opacity, transform; }
+    .reveal.in-view, [data-animate].in-view { opacity:1; transform:none; }
+
+    /* Specific variants */
+    .reveal-slide.in-view { animation: slideInFromTop 420ms var(--transition) both; }
+    .reveal-bounce.in-view { animation: logoBounce 620ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-hero.in-view { animation: heroZoomSkew 680ms cubic-bezier(.15,.9,.18,1) both; transform-origin: center; }
+    .reveal-flip.in-view { animation: flipInX 520ms cubic-bezier(.2,.9,.2,1) both; transform-origin: center; }
+    .reveal-rotate.in-view { animation: rotateIn 520ms cubic-bezier(.22,.85,.12,1) both; transform-origin:center; }
+    .reveal-left.in-view { animation: slideInLeft 360ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-right.in-view { animation: slideInRight 360ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-brand.in-view { animation: brandGlide 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .reveal-footer.in-view { animation: footerRise 420ms cubic-bezier(.2,.9,.2,1) both; }
+
+    .float-anim { will-change: transform; }
+    @media (prefers-reduced-motion: no-preference) {
+      .float-anim { animation: subtleFloat 6s ease-in-out infinite; transform-origin:center; }
+    }
+
+    .cta-pulse { display:inline-block; will-change: transform, box-shadow; }
+    @media (prefers-reduced-motion: no-preference) {
+      .cta-pulse.animated { animation: subtleFloat 2200ms ease-in-out infinite; }
+    }
+
+    .team-card { transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms; transform-origin: center; backface-visibility:hidden; perspective:1000px; }
+    .team-card:focus-within, .team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(6,60,60,0.09); }
+
+    .pill { transition: transform 160ms cubic-bezier(.2,.9,.2,1), box-shadow 160ms; }
+    .pill:hover, .pill:focus { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(6,60,60,0.06); outline:none; }
+
+    .brands-wrapper { position: relative; overflow:hidden; }
+    .brands-grid { position:relative; z-index:2; display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
+    .brand-item { width:100%; height:56px; display:grid; place-items:center; border-radius:6px; opacity:0.98; transition: transform 260ms; background:#fff; color:#0a5f71; font-weight:700; }
+    .brand-item:hover { transform: translateY(-6px); }
+
+    .typewriter { white-space:nowrap; overflow:hidden; border-right: 2px solid rgba(13,157,181,0.9); padding-right:4px; display:inline-block; vertical-align:bottom; max-width:100%; }
+    @media (prefers-reduced-motion: no-preference) {
+      .typewriter.caret-anim { animation: typingCaret 900ms steps(1,start) infinite; }
+    }
+
+    .modal { transition: opacity 220ms var(--transition), transform 220ms var(--transition); transform: translateY(8px); }
+    .modal.open { transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-flip, .reveal-hero, .float-anim, .cta-pulse, .team-card, .brands-wrapper::after, .modal, .brand-item, .typewriter { transition: none !important; animation: none !important; transform: none !important; opacity:1 !important; border-right:none !important; }
+    }
+
+    /* =========================================================================
+       SITE HEADER & NAV (responsive)
+       ========================================================================= */
+    .header { background: white; border-bottom: 1px solid #e0e0e0; padding: 12px 0; position: sticky; top: 0; z-index: 1000; }
+    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; gap: 20px; }
+    .nav-left { display:flex; gap:18px; align-items:center; min-width:0; flex:1; }
+    .nav-item { color: #0a5f71; font-weight:600; font-size:14px; cursor:pointer; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; margin-right: 32px; margin-left: 8px; }
+    .logo { text-align:center; display:flex; flex-direction:column; align-items:center; gap:2px; flex: 0 0 auto; position:absolute; left:50%; transform:translateX(-50%); pointer-events:auto; }
+    .logo-text { color: #0D9DB5; font-size:28px; font-weight:700; line-height:1; }
+    .logo-subtext { color: #0D9DB5; font-size:11px; letter-spacing:2px; }
+    .icon-btn { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .emergency-num { font-weight:700; color:#333; font-size:13px; }
+    .lang-select { border:1px solid #ddd; padding:5px 15px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; }
+
+    .nav-right { display:flex; align-items:center; gap:18px; min-width:0; }
+    .nav-toggle { display:none; width:44px; height:44px; border-radius:8px; align-items:center; justify-content:center; cursor:pointer; border:1px solid transparent; background:transparent; }
+    .nav-toggle:focus { outline:2px solid rgba(13,157,181,0.18); }
+
+    .mobile-menu { display:none; position: fixed; left: 0; right: 0; top: 64px; background: white; border-bottom: 1px solid #eee; z-index:1099; padding:12px 20px; box-shadow:0 6px 20px rgba(0,0,0,0.06); max-height: calc(100vh - 64px); overflow:auto; -webkit-overflow-scrolling: touch; }
+    .mobile-menu[aria-hidden="false"] { display:block; }
+
+    /* =========================================================================
+       MAIN LAYOUT
+       ========================================================================= */
+    .container{ width:var(--container); margin:28px auto; padding-bottom:48px; }
+    .rail-btn{ width:56px;height:56px;border-radius:50%;display:grid;place-items:center; background:linear-gradient(180deg,#fff,#f6fbfb);box-shadow:0 6px 18px rgba(10,30,30,0.06); border:6px solid rgba(10,150,145,0.03);cursor:pointer; }
+    .rail-btn svg{width:28px;height:28px}
+
+    /* HERO: fluid, responsive */
+    .hero{ display:grid; grid-template-columns: minmax(240px,420px) 1fr; gap:32px; align-items:start; margin-bottom:18px; }
+    .hero .portrait{ border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-soft); border:1px solid rgba(6,60,60,0.04); background:linear-gradient(180deg,#254d4d,#083434); min-height:320px; display:flex; align-items:center; justify-content:center; }
+    .hero .portrait img { width:100%; height:auto; max-height: var(--max-hero-img-height); object-fit:cover; display:block; }
+
+    .hero h1{ font-family:'Source Serif 4',serif; font-size:36px; margin:0 0 12px; color: #0D9DB5 }
+    .hero p.lead{ color:var(--muted-text); font-size:16px; margin:0 0 10px; max-width:80ch }
+    .hero .hero-actions{ display:flex; gap:12px; margin-top:12px }
+    .pill-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px }
+    .pill{ padding:10px 16px; border-radius:999px; border:2px solid rgba(7,60,60,0.08); background:#fff; font-weight:700; color:var(--primary); cursor:pointer }
+
+    .section-title{ font-size:28px; font-weight:700; margin:8px 0 18px; color:var(--primary) }
+    .muted{ color:var(--muted-text) }
+
+    .mission{ background:#fff; border-radius:var(--radius-lg); padding:28px; display:grid; grid-template-columns: 1fr 360px; gap:24px; align-items:center; border:1px solid rgba(6,60,60,0.03); box-shadow:0 10px 30px rgba(6,60,60,0.03); }
+    .mission .imgwrap{ border-radius:12px; overflow:hidden; height:220px; display:flex; align-items:center; justify-content:center; }
+
+    .center-head{ text-align:center; margin:36px 0 }
+    .center-head h2{ font-size:32px; margin:0 0 6px; }
+    .center-head p{ max-width:1180px; margin:8px auto; color:var(--muted-text) }
+
+    .leader-highlight{ background:#fff; border-radius:14px; padding:18px; border:1px solid rgba(6,60,60,0.06); display:flex; gap:18px; align-items:center; box-shadow:0 8px 22px rgba(6,60,60,0.03); flex-wrap:wrap; }
+    .leader-photo{ width:220px; max-width:46%; height:auto; border-radius:18px; overflow:hidden; flex-shrink:0; }
+    .leader-photo img{ width:100%; height:auto; object-fit:cover; display:block; }
+    .leader-info{ flex:1; min-width:180px; }
+    .leader-info h3{ color: #0D9DB5; margin:0 0 6px }
+    .read-more{ background:transparent; border:2px solid ; color: #0D9DB5; padding:10px 16px; border-radius:999px; cursor:pointer; font-weight:700 }
+
+    .modal .panel{ width:min(900px,96%); max-height:86vh; overflow:auto; }
+
+    .team-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:18px; margin-top:18px; }
+    .team-card{ background:#fff; border-radius:12px; padding:16px; border:1px solid rgba(6,60,60,0.05); display:flex; flex-direction:column; }
+    .team-card .thumb{ height:220px; border-radius:8px; overflow:hidden; background:#f7f7f7; }
+    .team-card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .team-card h4{ margin:12px 0 6px }
+    .team-card p{ margin:0; color:var(--muted-text); flex:1 }
+    .team-card .card-actions{ display:flex; gap:12px; align-items:center; margin-top:12px }
+
+    .brands-wrapper{ margin-top:30px; padding:18px; border-radius:12px }
+    .brands-grid{ display:grid; grid-template-columns: repeat(6, 1fr); gap:14px; align-items:center; justify-items:center; }
+    .brand-item{ min-width:120px; max-width:220px; }
+
+    .cta-block{ margin-top:36px; background:linear-gradient(90deg,#06323a10,#fff); padding:24px; border-radius:12px; display:flex; gap:18px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+    .cta-block h3{ margin:0 }
+    .cta-block p{ margin:0; color:var(--muted-text) }
+
+    /* FOOTER */
+    .footer { background:#0a5f71; color:white; padding:40px 0 20px; }
+    .footer-container { width: var(--container); margin: 0 auto; padding: 0 14px; }
+    .footer-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-bottom:28px; }
+    .footer-logo { font-size:20px; font-weight:700; color:#FFD700; margin-bottom:6px; }
+    .footer-logo-sub { font-size:9px; letter-spacing:2px; color:#FFD700; }
+    .footer-text { color:rgba(255,255,255,0.85); font-size:14px; line-height:1.6; margin:14px 0; }
+    .social-links { display:flex; gap:10px; margin-top:6px; }
+    .social-link { width:36px; height:36px; background:rgba(255,255,255,0.08); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; font-size:16px; transition:background 0.3s; }
+
+    /* -------------------------------------------------------------------------
+       CALLBACK modal & form styles (kept intact)
+       ------------------------------------------------------------------------- */
+    .callback-modal { position: fixed; inset: 0; display: none; justify-content: center; align-items: center; background: rgba(0,0,0,0.6); z-index: 10050; padding: 20px; }
+    .callback-modal[aria-hidden="false"] { display: flex; }
+    .callback-modal-inner { width: 100%; max-width: 920px; border-radius: 16px; background: linear-gradient(135deg, white 0%, white 100%); padding: 28px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); color: #0D9DB5; position: relative; }
+    .callback-modal-close { position: absolute; right: 12px; top: 12px; background: rgba(255,255,255,0.06); border: none; color: #fff; font-size: 18px; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; }
+    .form-row { display:flex; gap:12px; margin-bottom:16px; flex-wrap:wrap; width:100%; }
+    .form-input { flex: 1; padding: 14px 16px; border: 2px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); border-radius: 10px; color: #0D9DB5; font-size: 15px; transition: 0.3s ease; min-width: 120px; backdrop-filter: blur(4px); }
+    .form-input::placeholder { color: #0D9DB5; }
+    .otp-btn { background:#FFB800; color:#0a5f71; padding:10px 16px; border:none; border-radius:8px; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .submit-btn { background:#FFB800; color:#0a5f71; padding:12px 28px; border:none; border-radius:8px; font-weight:700; cursor:pointer; font-size:15px; margin-top:10px; }
+
+    /* =========================================================================
+       RESPONSIVE BREAKPOINTS
+       - Very careful: preserve all functionality and IDs while stacking
+       ========================================================================= */
+    @media (max-width:1100px) {
+      .nav-container { padding: 0 16px; }
+      .hero { grid-template-columns: minmax(200px,380px) 1fr; gap:20px; }
+      .mission { grid-template-columns: 1fr 300px; padding:20px; gap:18px; }
+      .leader-photo{ width:200px; }
+      .center-head h2{ font-size:28px; padding-right:0; }
+      .brands-grid { grid-template-columns: repeat(4,1fr); gap:12px; }
+    }
+
+    @media (max-width:900px) {
+      /* Header adjustments */
+      .logo { position: static; transform:none; margin:0 auto; }
+      .nav-container { padding: 0 12px; align-items:center; }
+      .nav-left { gap:10px; }
+      .nav-item { margin:0 8px; font-size:13px; }
+
+      .desktop-only { display:none !important; }
+      .mobile-only { display:flex !important; align-items:center; gap:12px; }
+
+      .nav-toggle { display:flex; }
+
+      /* Layout stacks to single column */
+      .hero { grid-template-columns: 1fr; gap:16px; }
+      .hero .portrait { min-height: 220px; max-height: 420px; }
+      .mission { grid-template-columns: 1fr; }
+      .leader-highlight { flex-direction: column; gap:12px; align-items:flex-start; }
+      .leader-photo { width:100%; max-width:420px; height:auto; border-radius:12px; }
+      .team-grid { grid-template-columns: repeat(2,1fr); }
+
+      .brands-grid { display:flex; gap:12px; overflow-x:auto; padding:8px; }
+      .brand-item { flex: 0 0 auto; min-width:120px; max-width:220px; }
+
+      .cta-block { flex-direction:column; align-items:flex-start; gap:12px; }
+
+      .footer-grid { grid-template-columns:1fr; }
+      .footer-container { padding: 0 12px; }
+    }
+
+    @media (max-width:640px) {
+      .logo-text { font-size:20px; }
+      .logo-subtext { font-size:10px; }
+      .hero h1{ font-size:26px }
+      .center-head h2{ font-size:22px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .mission { padding:16px; }
+      .container { margin:16px auto; padding-bottom:36px; }
+      .nav-item { font-size:12px; margin:0 6px; }
+      .pill { padding:8px 12px; font-size:14px; }
+      .form-input { padding:12px; font-size:14px; }
+      .callback-modal-inner { padding:18px; }
+    }
+
+    /* Small helpers */
+    .hidden-mobile { display:inline-block; }
+    @media (max-width:900px) { .hidden-mobile { display:none !important; } }
+
+    .sr-only{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden }
+
+  </style>
+</head>
+<body>
+
+  <!-- ====== HEADER NAV ====== -->
+  <header class="header reveal-slide" role="navigation" aria-label="Main navigation" data-animate>
+    <div class="nav-container">
+      <div class="nav-left" style="align-items:center;">
+        <button class="nav-toggle mobile-only" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" title="Menu" aria-label="Open menu">
+          <!-- hamburger -->
+          <svg width="22" height="14" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect y="1" width="24" height="2" rx="1" fill="#0a5f71"/>
+            <rect y="7" width="24" height="2" rx="1" fill="#0a5f71"/>
+            <rect y="13" width="24" height="2" rx="1" fill="#0a5f71"/>
+          </svg>
+        </button>
+
+        <div class="nav-item desktop-only reveal-left" data-animate>
+          <a href="/pages/index.html">HOME</a>
+        </div>
+
+        <div class="nav-item desktop-only reveal-left" data-animate>
+          <a href="https://www.google.com/maps/search/406+Second+Floor+Udyog+Vihar+Phase+3+Gurugram+Haryana+122016/@28.5049834,77.0776351,16z?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D">FIND HOSPITAL</a>
+        </div>
+      </div>
+
+      <div class="logo reveal-bounce" aria-hidden="false" data-animate>
+        <div class="logo-text">Exly</div>
+        <div class="logo-subtext">HOSPITALS</div>
+      </div>
+
+      <div class="nav-right">
+        <div class="nav-item desktop-only reveal-right" data-animate>
+          <a href="/pages/service.html">SERVICES</a>
+        </div>
+        <div class="hero-actions" role="group" aria-label="Hero actions">
+          <button id="requestCallbackBtn" class="explore-btn reveal-hero cta-pulse" data-animate style="margin-left: auto ; display:inline-block;padding:12px 32px;background-color:#FFC107;color:#00695C;border-radius:999px;border:none;text-decoration:none;font-weight:600;letter-spacing:0.5px;">REQUEST A CALLBACK →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <nav id="mobileMenu" class="mobile-menu" aria-hidden="true" aria-label="Mobile menu">
+      <div class="menu-row">
+        <a class="nav-item" href="#">Find Hospital</a>
+        <a class="nav-item" href="#">Book Appointment</a>
+        <a class="nav-item" href="#">Medical Services</a>
+        <a class="nav-item" href="#">Health Library</a>
+        <a class="nav-item" href="#">Emergency: 1066</a>
+        <a class="nav-item" href="#">Exly 24/7 App</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="container" role="main" aria-labelledby="pageTitle">
+    <!-- HERO / VISION -->
+    <section class="hero" aria-labelledby="visionTitle">
+      <div class="portrait reveal-hero" data-animate>
+         <img src="/assets/Indias-first-AI-powered-hospital-opens-in-Bengaluru.jpg" alt="Hero image placeholder" style="padding-top: 0;" class="float-anim">
+      </div>
+
+      <div>
+        <h1 id="visionTitle" class="reveal-left" data-animate>Our Vision</h1>
+
+        <p class="lead reveal-right" data-animate><strong>To "Touch a Billion Lives"</strong> — we envision a future where high-quality healthcare, research and education reach populations across geographies through integrated services and compassionate care.</p>
+
+        <p class="muted reveal" data-animate>
+          Exly Hospitals aims to bridge gaps in health access using a three-pillar model: world-class clinical services, digitally enabled care pathways, and community engagement. We combine multidisciplinary teams, evidence-based protocols, and technology (telemedicine, remote monitoring, AI-assisted diagnostics) to deliver consistent outcomes across urban, semi-urban and rural settings.
+        </p>
+
+        <p class="muted reveal" data-animate>
+          In the next five years our priorities include: expanding affordable specialty care, scaling preventive screening programs, establishing new training centers for allied health professionals, and publishing clinical outcomes to contribute to global best practices. We measure success by improved health metrics, patient experience scores, and demonstrable community impact.
+        </p>
+
+        <div class="pill-row" role="list" aria-label="Quick links">
+          <button class="pill reveal-left" data-animate role="listitem">Our Mission</button>
+          <button class="pill reveal-right" data-animate role="listitem">Leadership</button>
+          <button class="pill reveal-left" data-animate role="listitem">Research</button>
+          <button class="pill reveal-right" data-animate role="listitem">Alliances</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION BLOCK -->
+    <section class="mission reveal-flip" aria-labelledby="missionHeading" data-animate>
+      <div>
+        <h2 id="missionHeading">Our Mission</h2>
+        <p class="lead" style="color: #6b7d7d;">“To bring healthcare of international standards within the reach of every individual.”</p>
+
+        <p class="muted">
+          Our mission is delivered through four integrated commitments: clinical excellence, patient safety, affordability, and education. We implement standardized clinical pathways, rigorous quality checks, and continuous training so every patient receives care guided by the latest evidence and compassion.
+        </p>
+
+        <p class="muted">
+          Core programs that operationalize this mission:
+        </p>
+        <ul class="muted" style="margin-top:8px;">
+          <li><strong>Community Screening & Prevention:</strong> large-scale health camps, school screenings and workplace wellness programs with follow-up care.</li>
+          <li><strong>Telehealth & Remote Care:</strong> teleconsultations, remote vitals monitoring, and digital triage to reduce unnecessary referrals.</li>
+          <li><strong>Training & Research:</strong> accredited fellowships, simulation labs, and clinical research partnerships to advance treatment standards.</li>
+          <li><strong>Affordability Initiatives:</strong> bundled packages, insurance facilitation, and public partnerships to lower out-of-pocket costs.</li>
+        </ul>
+      </div>
+
+      <div class="imgwrap reveal-rotate" data-animate>
+         <img src="../assets/66e1b15983b8099cf9fd7d96.webp" alt="Mission image placeholder" class="float-anim">
+      </div>
+    </section>
+
+    <!-- CENTERED INTRO -->
+    <section class="center-head reveal" aria-hidden="true" data-animate>
+      <h2 id="centerHeading" class="typewriter caret-anim" data-fulltext="A Story of Clinical Excellence, Built on Strong Differentiation" aria-live="polite" style="padding-right: 0;"></h2>
+      <p class="muted">
+        We set the bar for patient-focused care through quality governance, research-led interventions and an integrated health delivery model. Exly combines tertiary specialty centers with community clinics and homecare — ensuring continuity of care from prevention to advanced treatment and rehabilitation.
+      </p>
+
+      <p class="muted">
+        Our approach blends measured clinical outcomes (mortality, readmission, infection rates) with patient experience metrics (satisfaction, functional recovery) and social impact (access metrics, screenings delivered). This allows partners and patients to see transparent, evidence-based improvements over time.
+      </p>
+    </section>
+
+    <!-- LEADERSHIP HIGHLIGHT -->
+    <section aria-labelledby="leadershipHeading">
+      <h2 id="leadershipHeading" class="section-title reveal" data-animate>Our Leadership</h2>
+
+      <article class="leader-highlight reveal-flip" role="article" aria-labelledby="founderName" data-animate>
+        <div class="leader-photo reveal-rotate" aria-hidden="true" data-animate>
+          <img src="../assets/steve-jobs.avif" alt="Founder portrait placeholder" class="float-anim">
+        </div>
+        <div class="leader-info">
+          <h3 id="founderName">Dr. Prathap C. Reddy</h3>
+          <h4>Founder & Chairman</h4>
+
+          <p class="muted">
+            Dr. Prathap C. Reddy is the architect of Exly's integrated healthcare vision. With a career spanning decades, he has led the creation of multi-specialty hospitals, academic institutions, and scalable community programs that prioritize clinical outcomes and public health. Under his leadership Exly has launched pioneering telemedicine initiatives, collaborative research programs, and major preventive health campaigns reaching millions.
+          </p>
+
+          <p class="muted">
+            Notable contributions include mentorship of clinical leaders, establishment of postgraduate training programs, and strategic alliances with global research organizations. Dr. Reddy advocates for data-driven care models and equitable access to treatment across income groups.
+          </p>
+
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <button class="read-more" id="openFounder" aria-controls="founderModal">Read More →</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Modal: founder details -->
+      <div id="founderModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="founderModalTitle">
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 id="founderModalTitle">Dr. Prathap C. Reddy — Profile</h3>
+            <button class="close" id="closeFounder" aria-label="Close founder details">Close ✕</button>
+          </div>
+          <hr style="margin:12px 0 18px;border:none;border-top:1px solid #eee">
+          <p class="muted">
+            Dr. Prathap C. Reddy (MBBS, MD) is an industry leader and clinician-administrator with a career focused on integrating clinical excellence with system-level change. He has chaired numerous national bodies, advised public health initiatives, and pioneered clinical quality frameworks that are used across the network. His priorities include capacity building, translational research and equitable healthcare financing.
+          </p>
+
+          <h4 style="margin-top:18px">Career Highlights & Achievements</h4>
+          <ul class="muted">
+            <li>Founded and scaled a multi-state integrated healthcare network that combines hospitals, clinics, labs and homecare services.</li>
+            <li>Launched telemedicine and digital health platforms that deliver specialist care to remote locations with validated clinical pathways.</li>
+            <li>Established training programs and research fellowships, producing leaders in cardiology, oncology, neurosciences and critical care.</li>
+            <li>Authored and sponsored community programs for maternal & child health, non-communicable disease screening and disaster response.</li>
+            <li>Recipient of national awards for healthcare leadership and public service (replace with actual awards in production).</li>
+          </ul>
+
+          <h4 style="margin-top:18px">Publications & Resources</h4>
+          <p class="muted">This modal can be extended to include downloadable resources: whitepapers, annual reports, published clinical audits, and interview transcripts. In production, wire the "Download Profile" link to a secure endpoint that serves verified PDFs.</p>
+
+          <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+            <button class="btn-primary" onclick="alert('Download (demo): Founder profile PDF not linked in demo')">Download Profile (PDF)</button>
+            <a href="#" class="link-text" style="margin-left:8px;">Visit Leadership Page</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leadership track -->
+      <div class="leadership-wrapper" aria-hidden="false">
+        <div class="team-track" id="leadershipTrack" role="list" tabindex="0" aria-label="Leadership team carousel">
+          <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team1" data-animate>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/Shah_Rukh_Khan_at_Jab_Harry_Met_Sejal_new_song_launch_'Beech_Beech_Mein'.jpg" alt="Dr. Preetha Reddy">
+            </div>
+            <h4 id="team1">Dr. Preetha Reddy</h4>
+            <p class="muted">Executive Vice Chairperson — drives clinical governance, outcomes measurement and quality programmes across specialties. She champions patient safety, nurse training and accreditation readiness across all centres.</p>
+          </article>
+
+          <article class="team-card reveal-right" role="listitem" tabindex="0" aria-labelledby="team2" data-animate>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/HD-wallpaper-salman-khan-tiger.jpg" alt="Dr. Suneeta Reddy">
+            </div>
+            <h4 id="team2">Dr. Suneeta Reddy</h4>
+            <p class="muted">Managing Director — responsible for operations, strategic growth, performance optimization and large scale programme delivery. Leads expansion initiatives and partner integrations to enhance capacity.</p>
+          </article>
+
+          <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team3" data-animate>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/Aishwarya_Rai_2015.jpg" alt="Ms. Shobana Kamineni">
+            </div>
+            <h4 id="team3">Ms. Shobana Kamineni</h4>
+            <p class="muted">Promoter Director — leads philanthropy, corporate social responsibility and community partnerships. Focused on health equity, educational outreach and scaling sustainable public health programs.</p>
+          </article>
+
+          <article class="team-card reveal-right" role="listitem" tabindex="0" aria-labelledby="team4" data-animate>
+            <div class="thumb" aria-hidden="true">
+              <img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy">
+            </div>
+            <h4 id="team4">Dr. Sangita Reddy</h4>
+            <p class="muted">Joint Managing Director — leads digital health transformation, partnerships with technology companies, and patient experience programs that include remote monitoring and AI-enabled decision support.</p>
+          </article>
+
+          <!-- duplicates intentionally retained -->
+          <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team4-dup1" data-animate>
+            <div class="thumb" aria-hidden="true"><img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy"></div>
+            <h4 id="team4-dup1">Dr. Sangita Reddy</h4>
+            <p class="muted">Joint Managing Director — clinical innovation, partnerships and digital health. (Duplicate card intentionally retained for layout)</p>
+          </article>
+
+          <article class="team-card reveal-right" role="listitem" tabindex="0" aria-labelledby="team4-dup2" data-animate>
+            <div class="thumb" aria-hidden="true"><img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy"></div>
+            <h4 id="team4-dup2">Dr. Sangita Reddy</h4>
+            <p class="muted">Joint Managing Director — clinical innovation, partnerships and digital health. (Duplicate card intentionally retained for layout)</p>
+          </article>
+
+          <article class="team-card reveal-left" role="listitem" tabindex="0" aria-labelledby="team4-dup3" data-animate>
+            <div class="thumb" aria-hidden="true"><img src="/assets/Amitabh_Bachchan_December_2013.png" alt="Dr. Sangita Reddy"></div>
+            <h4 id="team4-dup3">Dr. Sangita Reddy</h4>
+            <p class="muted">Joint Managing Director — clinical innovation, partnerships and digital health. (Duplicate card intentionally retained for layout)</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="leadership-controls" role="group" aria-label="Leadership carousel controls">
+        <button id="leadPrev" class="lead-btn" aria-label="Previous leadership" title="Previous" aria-disabled="true">←</button>
+        <button id="leadNext" class="lead-btn" aria-label="Next leadership" title="Next" aria-disabled="true">→</button>
+      </div>
+    </section>
+
+    <!-- ALLIANCES CTA -->
+    <section aria-labelledby="alliancesHeading" style="margin-top:36px">
+      <h2 id="alliancesHeading" class="section-title reveal-left" data-animate>Exly Alliances</h2>
+      <div>
+        <div class="brands-wrapper" aria-hidden="false">
+          <div class="brands-grid" role="list" aria-label="Partner brands">
+            <div class="brand-item reveal-brand" data-animate role="listitem">Brand A</div>
+            <div class="brand-item reveal-brand" data-animate role="listitem">Brand B</div>
+            <div class="brand-item reveal-brand" data-animate role="listitem">Brand C</div>
+            <div class="brand-item reveal-brand" data-animate role="listitem">Brand D</div>
+            <div class="brand-item reveal-brand" data-animate role="listitem">Brand E</div>
+            <div class="brand-item reveal-brand" data-animate role="listitem">Brand F</div>
+          </div>
+        </div>
+
+        <p class="muted reveal" style="max-width:1400px; text-align: center; padding-top: 20px;" data-animate>
+          We partner with leading research institutions, medical colleges, technology providers and governmental public-health agencies. These alliances enable multicentre clinical trials.
+        </p>
+      </div>
+
+      <div class="cta-block reveal footer-block" role="region" aria-label="Contact and brochure" data-animate>
+        <div>
+          <h3 style="margin:0">Need more information?</h3>
+          <p class="muted">Contact corporate communications or request an institutional brochure for partnerships, research or academic collaborations. We provide tailored partnership briefs, MOUs and program proposals on request.</p>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button class="btn-accent reveal-right cta-pulse" aria-label="Request brochure" style="margin-left: auto; display: inline-block; padding: 12px 32px; background-color: #FFC107; color: #6b7d7d; border-radius: 999px; border: none; text-decoration: none; font-weight: 600; letter-spacing: 0.5px;" data-animate>Request Brochure</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer reveal-footer" role="contentinfo" data-animate>
+    <div class="footer-container">
+      <div class="app-section reveal" data-animate>
+        <div class="app-section-text">
+          <h3 style="font-size:16px; margin-bottom:6px;">Download Exly 24/7 App</h3>
+          <p style="margin:0;">Manage appointments, access reports, order medicines and consult doctors online – all in one app.</p>
+        </div>
+        <div class="app-buttons">
+          <a href="#" class="app-button" aria-label="Download on the App Store">
+            <span></span>
+            <span><strong>Download on the</strong><br style="line-height:1;">App Store</span>
+          </a>
+          <a href="#" class="app-button" aria-label="Get it on Google Play">
+            <span>▶</span>
+            <span><strong>Get it on</strong><br style="line-height:1;">Google Play</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Exly</div>
+          <div class="footer-logo-sub">HOSPITALS</div>
+          <p class="footer-text">
+            Exly Hospitals is India’s leading integrated healthcare provider, delivering world-class patient care with cutting-edge technology and compassionate expertise. We combine tertiary specialties, diagnostics, telehealth and homecare into coordinated care journeys.
+          </p>
+          <div class="social-links" aria-hidden="true">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">in</a>
+            <a href="#" class="social-link">X</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#">Find a Doctor</a></li>
+            <li><a href="#">Book Appointment</a></li>
+            <li><a href="#">Health Check Packages</a></li>
+            <li><a href="#">International Patients</a></li>
+            <li><a href="#">Insurance &amp; TPA</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Centres of Excellence</h4>
+          <ul class="footer-links">
+            <li><a href="#">Cardiac Sciences</a></li>
+            <li><a href="#">Oncology</a></li>
+            <li><a href="#">Neurosciences</a></li>
+            <li><a href="#">Orthopaedics</a></li>
+            <li><a href="#">Transplants</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <div class="footer-contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="footer-contact-label">Corporate Office</div>
+              <div class="footer-contact-value">Exly Hospitals Enterprise Ltd., Chennai, India</div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="footer-contact-label">24x7 Emergency</div>
+              <a href="tel:1066" class="footer-contact-value">1066</a>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="footer-contact-label">Email</div>
+              <a href="mailto:info@exlyhospitals.com" class="footer-contact-value">info@exlyhospitals.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">© 2025 Exly Hospitals Enterprise Ltd. All rights reserved.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">CSR</a>
+          <a href="#">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CALLBACK Modal -->
+  <div id="callbackModal" class="callback-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Request a callback">
+    <div class="callback-modal-inner">
+      <button class="callback-modal-close" aria-label="Close callback form" id="callbackCloseBtn">✕</button>
+      <div class="callback-form" style="color:inherit;">
+        <div class="callback-title"><strong>COULD NOT FIND WHAT YOU ARE LOOKING FOR?</strong></div>
+        <h2 class="callback-heading">Request a Callback</h2>
+        <div class="form-row">
+          <input type="text" class="form-input" placeholder="Name" id="cbName" aria-label="Name" />
+          <input type="tel" class="form-input" placeholder="Mobile Number" id="cbMobile" aria-label="Mobile Number" />
+          <button class="otp-btn" type="button" id="cbSendOtp">Send OTP</button>
+          <input type="text" class="form-input" placeholder="Enter OTP" id="cbOtp" aria-label="OTP" />
+        </div>
+        <div>
+          <span class="link-text" role="button" tabindex="0" id="cbChangeNumber">Change Number</span>
+          <span style="margin: 0 12px; color: #0D9DB5;">|</span>
+          <span class="link-text" role="button" tabindex="0" id="cbResendOtp">Resend OTP</span>
+        </div>
+        <button class="submit-btn" type="button" id="cbSubmit">Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================
+       JAVASCRIPT (preserves original behavior + added responsive-friendly animation logic)
+       ====================== -->
+  <script>
+    (function(){
+      /* ---------- Modal: Founder Detail ---------- */
+      const modal = document.getElementById('founderModal');
+      const openBtn = document.getElementById('openFounder');
+      const closeBtn = document.getElementById('closeFounder');
+      if (openBtn && closeBtn && modal) {
+        openBtn.addEventListener('click', () => openModal());
+        closeBtn.addEventListener('click', () => closeModal());
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+      function openModal(){
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        modal.__returnFocus = document.activeElement;
+        closeBtn.focus();
+        document.addEventListener('focus', trapFocus, true);
+        document.addEventListener('keydown', modalKeydown);
+      }
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        if(modal.__returnFocus) modal.__returnFocus.focus();
+        document.removeEventListener('focus', trapFocus, true);
+        document.removeEventListener('keydown', modalKeydown);
+      }
+      function trapFocus(e){
+        if(!modal.contains(e.target)) {
+          e.stopPropagation();
+          closeBtn.focus();
+        }
+      }
+      function modalKeydown(e){
+        if(e.key === 'Escape') closeModal();
+      }
+
+      /* ---------- Team "Read More" (placeholder hooks) ---------- */
+      const teamReadBtns = document.querySelectorAll('.team-read');
+      teamReadBtns.forEach(btn => {
+        btn.addEventListener('click', (ev) => {
+          const card = ev.target.closest('.team-card');
+          const name = card ? (card.querySelector('h4')?.textContent || 'Profile') : 'Profile';
+          alert(name + ' — full profile page (placeholder). Replace this with real profile view or modal.');
+        });
+      });
+    })();
+
+    /* ========== Mobile menu toggle ========== */
+    (function() {
+      const navToggle = document.getElementById('navToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (navToggle && mobileMenu) {
+        function openMenu() {
+          navToggle.setAttribute('aria-expanded', 'true');
+          mobileMenu.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+          navToggle.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        navToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+          if (expanded) closeMenu();
+          else openMenu();
+        });
+
+        document.addEventListener('click', function(e) {
+          if (window.innerWidth <= 900 && mobileMenu.getAttribute('aria-hidden') === 'false') {
+            if (!mobileMenu.contains(e.target) && !navToggle.contains(e.target)) {
+              closeMenu();
+            }
+          }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
+            closeMenu();
+          }
+        });
+
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 900) {
+            if (mobileMenu.getAttribute('aria-hidden') === 'false') closeMenu();
+          }
+        });
+      }
+    })();
+
+    /* ========== Callback modal behavior ========== */
+    (function(){
+      const modal = document.getElementById('callbackModal');
+      const openBtn = document.getElementById('requestCallbackBtn');
+      const closeBtn = document.getElementById('callbackCloseBtn');
+      const sendOtpBtn = document.getElementById('cbSendOtp');
+      const submitBtn = document.getElementById('cbSubmit');
+      const changeNumber = document.getElementById('cbChangeNumber');
+      const resendOtp = document.getElementById('cbResendOtp');
+      let currentOtp = null;
+
+      function openCbModal() {
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('cbName').focus();
+      }
+      function closeCbModal() {
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (openBtn) openBtn.focus();
+      }
+
+      if (openBtn) openBtn.addEventListener('click', openCbModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeCbModal);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeCbModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+          closeCbModal();
+        }
+      });
+
+      if (sendOtpBtn) {
+        sendOtpBtn.addEventListener('click', () => {
+          const mobile = document.getElementById('cbMobile').value.trim();
+          if (!mobile) {
+            alert('Please enter mobile number');
+            return;
+          }
+          currentOtp = Math.floor(1000 + Math.random()*9000).toString();
+          alert('OTP sent (demo): ' + currentOtp);
+        });
+      }
+
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          const name = document.getElementById('cbName').value.trim();
+          const mobile = document.getElementById('cbMobile').value.trim();
+          const otp = document.getElementById('cbOtp').value.trim();
+          if (!name || !mobile || !otp) {
+            alert('Please fill all fields');
+            return;
+          }
+          if (otp !== currentOtp) {
+            alert('Incorrect OTP (demo).');
+            return;
+          }
+          alert('Callback request submitted. Our team will contact you shortly.');
+          closeCbModal();
+        });
+      }
+
+      if (changeNumber) {
+        changeNumber.addEventListener('click', () => {
+          document.getElementById('cbMobile').focus();
+        });
+      }
+      if (resendOtp) {
+        resendOtp.addEventListener('click', () => {
+          if (!document.getElementById('cbMobile').value.trim()) {
+            alert('Enter mobile number before resending OTP.');
+            return;
+          }
+          currentOtp = Math.floor(1000 + Math.random()*9000).toString();
+          alert('New OTP sent (demo): ' + currentOtp);
+        });
+      }
+    })();
+
+    /* ===========================
+       Leadership horizontal scroll controls
+       =========================== */
+    (function(){
+      const track = document.getElementById('leadershipTrack');
+      const prevBtn = document.getElementById('leadPrev');
+      const nextBtn = document.getElementById('leadNext');
+
+      if (!track || !prevBtn || !nextBtn) return;
+
+      function getGap() {
+        const cs = window.getComputedStyle(track);
+        const gapVal = cs.getPropertyValue('gap') || cs.getPropertyValue('--gap') || '';
+        const parsed = parseFloat(gapVal);
+        if (!isNaN(parsed) && parsed > 0) return parsed;
+        return 18;
+      }
+
+      function scrollAmount() {
+        const first = track.querySelector('.team-card');
+        if (!first) return Math.round(window.innerWidth * 0.6);
+        const gap = getGap();
+        const w = Math.round(first.getBoundingClientRect().width);
+        return w + gap;
+      }
+
+      function updateButtons() {
+        const canScroll = track.scrollWidth > track.clientWidth + 1;
+        if (!canScroll) {
+          prevBtn.setAttribute('aria-disabled', 'true');
+          nextBtn.setAttribute('aria-disabled', 'true');
+          return;
+        }
+        const atStart = track.scrollLeft <= 4;
+        const atEnd = Math.abs(track.scrollLeft + track.clientWidth - track.scrollWidth) <= 4;
+        prevBtn.setAttribute('aria-disabled', atStart ? 'true' : 'false');
+        nextBtn.setAttribute('aria-disabled', atEnd ? 'true' : 'false');
+      }
+
+      function smoothScrollBy(px) {
+        const prevOverflow = track.style.overflowX;
+        track.style.overflowX = 'auto';
+        track.scrollBy({ left: px, behavior: 'smooth' });
+        setTimeout(() => {
+          track.style.overflowX = prevOverflow || '';
+          updateButtons();
+        }, 520);
+      }
+
+      prevBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if (this.getAttribute('aria-disabled') === 'true') return;
+        smoothScrollBy(-scrollAmount());
+      });
+
+      nextBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        if (this.getAttribute('aria-disabled') === 'true') return;
+        smoothScrollBy(scrollAmount());
+      });
+
+      prevBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+      nextBtn.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } });
+
+      track.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+      });
+
+      track.addEventListener('scroll', function(){
+        window.requestAnimationFrame(updateButtons);
+      });
+      window.addEventListener('resize', function(){ setTimeout(updateButtons, 120); });
+
+      setTimeout(updateButtons, 120);
+    })();
+
+    /* ===========================
+       Reveal animations via IntersectionObserver (reduced delays)
+       - Typewriter triggered on visibility
+       =========================== */
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const revealElems = document.querySelectorAll('[data-animate], .reveal, .reveal-left, .reveal-right, .reveal-hero, .reveal-flip, .reveal-rotate, .reveal-brand, .reveal-footer');
+
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { root: null, rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+
+        revealElems.forEach(el => observer.observe(el));
+      } else {
+        revealElems.forEach(el => el.classList.add('in-view'));
+      }
+
+      // hero parallax (subtle)
+      if (!prefersReduced) {
+        const portrait = document.querySelector('.portrait img');
+        function onScroll() {
+          if (!portrait) return;
+          const rect = portrait.getBoundingClientRect();
+          const progress = Math.max(-1, Math.min(1, (rect.top - window.innerHeight/2) / (window.innerHeight)));
+          const max = 12;
+          const translate = progress * -max;
+          portrait.style.transform = `translateY(${translate}px) scale(1.01)`;
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        setTimeout(onScroll, 100);
+      }
+
+      // CTA pulse toggle when in view
+      const cta = document.querySelector('.cta-pulse');
+      if (cta && !prefersReduced) {
+        if ('IntersectionObserver' in window) {
+          const ctaObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) e.target.classList.add('animated');
+              else e.target.classList.remove('animated');
+            });
+          }, { threshold: 0.36 });
+          ctaObs.observe(cta);
+        } else {
+          cta.classList.add('animated');
+        }
+      }
+
+      // Stagger reveals with reduced delays
+      (function applyStagger() {
+        const nodes = Array.from(document.querySelectorAll('[data-animate]'));
+        nodes.forEach((n, i) => {
+          const delay = Math.min(320, i * 30);
+          n.style.transitionDelay = (delay) + 'ms';
+          n.style.animationDelay = (delay) + 'ms';
+        });
+      })();
+
+      // Typewriter
+      (function typewriter() {
+        const h = document.getElementById('centerHeading');
+        if (!h) return;
+        const full = h.getAttribute('data-fulltext') || h.textContent || '';
+        h.textContent = '';
+        h.style.borderRight = '2px solid rgba(13,157,181,0.9)';
+        function startTyping() {
+          if (prefersReduced) { h.textContent = full; h.style.borderRight = 'none'; return; }
+          let i = 0;
+          const speed = 20;
+          const timer = setInterval(() => {
+            h.textContent = full.slice(0, ++i);
+            if (i >= full.length) {
+              clearInterval(timer);
+              setTimeout(()=>{ h.style.borderRight = 'none'; }, 600);
+            }
+          }, speed);
+        }
+        if (!prefersReduced && 'IntersectionObserver' in window) {
+          const ob = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                startTyping();
+                ob.unobserve(h);
+              }
+            });
+          }, { threshold: 0.2 });
+          ob.observe(h);
+        } else {
+          startTyping();
+        }
+      })();
+
+      // Make sure some persistent elements are visible immediately for keyboard/sr users
+      document.addEventListener('DOMContentLoaded', function(){
+        const persist = document.querySelectorAll('.logo, .nav-container, .footer');
+        persist.forEach(el => el.classList.add('in-view'));
+      });
+    })();
+
+    /* Accessibility small tweaks */
+    (function() {
+      const hasFocusVisible = CSS.supports && CSS.supports(':focus-visible');
+      if (!hasFocusVisible) {
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Tab' || e.key === 'Shift') {
+            document.documentElement.classList.add('using-keyboard');
+          }
+        });
+        document.addEventListener('mousedown', function(){
+          document.documentElement.classList.remove('using-keyboard');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
