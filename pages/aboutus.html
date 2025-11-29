@@ -9,26 +9,6 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* =========================================================================
-       CHANGELOG (Responsive Enhancements):
-       - Converted to mobile-first CSS (base styles for small screens)
-       - Added fluid typography using clamp() for all headings
-       - Made all images responsive with max-width:100% and object-fit
-       - Converted fixed-width layouts to flexible grids that stack on mobile
-       - Enhanced navigation with proper mobile menu (hamburger)
-       - Made all inputs/buttons touch-friendly (min 44px height)
-       - Added comprehensive media queries for breakpoints: 320px, 375px, 414px, 480px, 600px, 768px, 1024px, 1280px, 1440px
-       - Fixed modal sizing for mobile with proper max-height
-       - Ensured no horizontal scroll on any device
-       - Made forms full-width on mobile with proper spacing
-       - Enhanced leadership carousel for mobile with proper touch scrolling
-       - Fixed footer to stack properly on mobile
-       - All CSS preserved in single file, all JS inline as requested
-       ========================================================================= */
-
-    /* =========================================================================
-       THEME & RESET (Mobile-First Base)
-       ========================================================================= */
     :root{
       --container: min(1220px, 94%);
       --bg: #ffffff;
@@ -151,7 +131,7 @@
        ========================================================================= */
     .header { 
       background: white; 
-      border-bottom: 1px solid #e0e0e0; 
+      border-bottom: 2px solid #0D9DB5; 
       padding: 10px 0; /* Reduced padding for mobile */
       position: sticky; 
       top: 0; 
@@ -195,6 +175,7 @@
       left:50%; 
       transform:translateX(-50%); 
       pointer-events:auto; 
+      z-index:1100; /* ensure visible on mobile */
     }
     .logo-text { 
       color: #0D9DB5; 
@@ -637,7 +618,7 @@
     }
 
     /* =========================================================================
-       FOOTER - MOBILE FIRST
+       FOOTER - MOBILE FIRST (animations removed inside footer subtree)
        ========================================================================= */
     .footer { 
       background:#0a5f71; 
@@ -1154,11 +1135,12 @@
 
     <!-- mobile menu -->
     <nav id="mobileMenu" class="mobile-menu" aria-hidden="true" aria-label="Mobile menu">
-      <div class="menu-row">
+      <div class="menu-row" id="mobileMenuRow">
         <a class="nav-item" href="/index.html">Home</a>
         <a class="nav-item" href="https://www.google.com/maps/search/406+Second+Floor+Udyog+Vihar+Phase+3+Gurugram+Haryana+122016/@28.5049834,77.0776351,16z?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D">Find Hospital</a>
         <a class="nav-item" href="/pages/service.html">Services</a>
         <a class="nav-item" href="/pages/aboutus.html">About Us</a>
+        <!-- Note: Request Callback will be moved here in mobile view by JS -->
       </div>
     </nav>
   </header>
@@ -1415,9 +1397,9 @@
   </main>
 
   <!-- ====== FOOTER ====== -->
-  <footer class="footer reveal-footer" role="contentinfo" data-animate>
+  <footer class="footer" role="contentinfo">
     <div class="footer-container">
-      <div class="app-section reveal" data-animate>
+      <div class="app-section">
         <div class="app-section-text">
           <h3 style="font-size:16px; margin-bottom:6px;">Download Exly 24/7 App</h3>
           <p style="margin:0;">Manage appointments, access reports, order medicines and consult doctors online – all in one app.</p>
@@ -1625,6 +1607,8 @@
           if (window.innerWidth > 900) {
             if (mobileMenu.getAttribute('aria-hidden') === 'false') closeMenu();
           }
+          // Also update callback placement on resize
+          placeCallbackButtonResponsively();
         });
       }
     })();
@@ -1632,7 +1616,7 @@
     /* ========== Callback modal behavior ========== */
     (function(){
       const modal = document.getElementById('callbackModal');
-      const openBtn = document.getElementById('requestCallbackBtn');
+      const openBtn = document.getElementById('requestCallbackBtn'); // This button may be moved between nav and mobile menu
       const closeBtn = document.getElementById('callbackCloseBtn');
       const sendOtpBtn = document.getElementById('cbSendOtp');
       const submitBtn = document.getElementById('cbSubmit');
@@ -1648,15 +1632,27 @@
       function closeCbModal() {
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        if (openBtn) openBtn.focus();
+        // Return focus to whichever element has the callback button (if present)
+        const btn = document.getElementById('requestCallbackBtn');
+        if (btn) btn.focus();
       }
 
-      if (openBtn) openBtn.addEventListener('click', openCbModal);
+      // Attach handler to the button (works even if the button is moved in the DOM)
+      function attachCallbackOpenHandler() {
+        const btn = document.getElementById('requestCallbackBtn');
+        if (btn) {
+          btn.addEventListener('click', openCbModal);
+        }
+      }
+      attachCallbackOpenHandler();
+
       if (closeBtn) closeBtn.addEventListener('click', closeCbModal);
 
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeCbModal();
-      });
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeCbModal();
+        });
+      }
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
@@ -1891,7 +1887,7 @@
 
       // Immediate visibility for persistent items
       document.addEventListener('DOMContentLoaded', function(){
-        const persist = document.querySelectorAll('.logo, .nav-container, .footer');
+        const persist = document.querySelectorAll('.logo, .nav-container');
         persist.forEach(el => el.classList.add('in-view'));
       });
     })();
@@ -1913,7 +1909,75 @@
       }
     })();
 
+    /* =========================================================================
+       NEW: Responsive placement of Request Callback button into mobile menu
+       - Moves the existing button into the mobile menu when width <= 900
+       - Restores it back to the header/nav-right when width > 900
+       - We move the actual node (not clone) to preserve event listeners and ids.
+       ========================================================================= */
+    (function() {
+      const callbackBtn = document.getElementById('requestCallbackBtn');
+      const mobileMenuRow = document.getElementById('mobileMenuRow');
+      const heroActions = document.querySelector('.hero-actions');
+      let originalNextSibling = null;
+      let originalParent = null;
+
+      function placeCallbackButtonResponsively() {
+        if (!callbackBtn || !mobileMenuRow || !heroActions) return;
+        const mobile = window.innerWidth <= 900;
+        if (mobile) {
+          // Move into mobile menu (if not already moved)
+          if (callbackBtn.parentElement !== mobileMenuRow) {
+            // remember original parent and next sibling so we can restore
+            originalParent = callbackBtn.parentElement;
+            originalNextSibling = callbackBtn.nextElementSibling;
+            // style it appropriately for mobile menu
+            callbackBtn.classList.remove('reveal-hero');
+            callbackBtn.style.width = '100%';
+            callbackBtn.style.display = 'inline-block';
+            // create a wrapper anchor-like block to match nav items
+            const wrapper = document.createElement('div');
+            wrapper.className = 'mobile-callback-wrapper';
+            wrapper.style.width = '100%';
+            // move the button into wrapper and append to menu row
+            wrapper.appendChild(callbackBtn);
+            mobileMenuRow.appendChild(wrapper);
+          }
+        } else {
+          // move back to original location (nav-right / hero-actions)
+          // find wrapper if it exists
+          const wrapper = mobileMenuRow.querySelector('.mobile-callback-wrapper');
+          if (wrapper && wrapper.contains(callbackBtn)) {
+            // remove inline mobile styling
+            callbackBtn.style.width = '';
+            callbackBtn.style.display = '';
+            // place back to original parent in same position
+            if (originalParent) {
+              if (originalNextSibling && originalNextSibling.parentElement === originalParent) {
+                originalParent.insertBefore(callbackBtn, originalNextSibling);
+              } else {
+                originalParent.appendChild(callbackBtn);
+              }
+            } else {
+              // fallback: append to hero-actions
+              heroActions.appendChild(callbackBtn);
+            }
+            // remove wrapper
+            wrapper.remove();
+          }
+        }
+      }
+
+      // Expose to other parts of code (so other resize handlers can call)
+      window.placeCallbackButtonResponsively = placeCallbackButtonResponsively;
+
+      // run on load and on resize (debounced-ish via resize handlers above)
+      document.addEventListener('DOMContentLoaded', placeCallbackButtonResponsively);
+      // immediate run in case DOMContentLoaded already passed
+      placeCallbackButtonResponsively();
+    })();
+
     /* end of script */
   </script>
-</body>
+</body> 
 </html>
